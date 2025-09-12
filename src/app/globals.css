@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%; /* Dark Slate Gray */
-    --foreground: 0 0% 98%; /* White */
-    --card: 240 10% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 262 82% 60%; /* Electric Indigo */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 5% 15%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 300 81% 60%; /* Neon Pink */
-    --accent-foreground: 0 0% 100%;
+    --background: 0 0% 98%; /* Almost White */
+    --foreground: 240 10% 3.9%; /* Dark Slate Gray */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 262 82% 55%; /* A slightly adjusted Indigo */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 5% 90%;
+    --secondary-foreground: 240 10% 3.9%;
+    --muted: 240 5% 90%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 300 81% 55%; /* A slightly adjusted Pink */
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 5% 20%;
-    --input: 240 5% 20%;
-    --ring: 262 82% 60%; /* Electric Indigo */
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 85%;
+    --input: 240 5% 85%;
+    --ring: 262 82% 55%;
     --radius: 0.75rem;
   }
 

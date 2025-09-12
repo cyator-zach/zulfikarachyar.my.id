@@ -91,7 +91,7 @@
       hsl(var(--foreground)),
       hsl(var(--primary))
     );
-    animation: gradient 3s linear infinite;
+    animation: gradient 15s linear infinite;
   }
 }
 

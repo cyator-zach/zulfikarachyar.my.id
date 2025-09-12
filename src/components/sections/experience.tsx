@@ -18,7 +18,7 @@ export function ExperienceSection() {
             {experiences.map((exp, index) => (
               <Card key={index} className="bg-background/80 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-lg text-primary">{exp.position}</CardTitle>
+                  <CardTitle className="text-lg text-foreground">{exp.position}</CardTitle>
                   <CardDescription className="flex justify-between items-center text-foreground">
                     <span>{exp.company}</span>
                     <span className="font-medium">{exp.duration}</span>

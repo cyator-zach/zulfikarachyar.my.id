@@ -1,4 +1,4 @@
-import { Cloud, Code, Server, Network, ShieldCheck, Linkedin } from 'lucide-react';
+import { Cloud, Code, Server, Network, ShieldCheck, Linkedin, Github } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export const navLinks = [
@@ -69,6 +69,11 @@ export const contactLinks = [
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/zulfikar-achyar-79b15b257/',
     icon: Linkedin,
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/ZulfikarAchyar',
+    icon: Github,
   },
 ];
 

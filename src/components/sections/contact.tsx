@@ -2,7 +2,7 @@ import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { contactLinks } from '@/lib/placeholder-data';
+import { contactLinks, email } from '@/lib/placeholder-data';
 
 export function ContactSection() {
   return (
@@ -17,7 +17,7 @@ export function ContactSection() {
           </p>
           <div className="mt-8 flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Contact Details</h3>
-             <p className="text-slate-300">zulfikarachyar@gmail.com</p>
+             <p className="text-slate-300">{email}</p>
              <div className="flex space-x-4">
                 {contactLinks.map((link) => (
                   <Button key={link.name} asChild variant="outline" size="icon" className="bg-transparent text-white hover:bg-white/10 hover:text-white">

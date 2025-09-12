@@ -14,7 +14,6 @@ export const skills: { name: string; icon: LucideIcon }[] = [
   { name: 'Docker', icon: Server },
   { name: 'Kubernetes', icon: Server },
   { name: 'Networking', icon: Network },
-  { name: 'IT Support', icon: ShieldCheck },
 ];
 
 export const portfolioItems = [

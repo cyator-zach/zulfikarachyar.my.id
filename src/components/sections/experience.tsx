@@ -8,7 +8,7 @@ export function ExperienceSection() {
     <Section id="experience" className="bg-gradient-to-b from-blue-50 to-background">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-3xl font-bold font-headline text-foreground mb-4">
+          <h2 className="text-3xl font-bold font-headline text-primary mb-4">
             My Experience
           </h2>
           <p className="text-lg text-muted-foreground mb-8">

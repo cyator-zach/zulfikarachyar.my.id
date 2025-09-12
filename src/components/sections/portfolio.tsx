@@ -51,8 +51,8 @@ export function PortfolioSection() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-6 flex-grow flex flex-col bg-card">
-                    <CardTitle className="text-primary text-xl font-bold">{item.title}</CardTitle>
-                    <CardDescription className="mt-2 text-muted-foreground flex-grow">{item.description}</CardDescription>
+                    <CardTitle className="text-foreground text-xl font-bold">{item.title}</CardTitle>
+                    <CardDescription className="mt-2 text-foreground flex-grow">{item.description}</CardDescription>
                     <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
                       <a href="#">
                         Case Study <ArrowRight className="w-4 h-4 ml-2" />

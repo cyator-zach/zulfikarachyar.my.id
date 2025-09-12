@@ -4,8 +4,8 @@ import { Code } from 'lucide-react';
 
 export function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg">
-      <div className="container mx-auto px-4 flex items-center justify-between h-16">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
+      <div className="container mx-auto px-4 flex items-center justify-between h-16 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg">
         <a href="#home" className="flex items-center gap-2 font-bold text-lg text-foreground">
           <Code className="w-6 h-6 text-primary" />
           <span>Zulfikar Achyar</span>

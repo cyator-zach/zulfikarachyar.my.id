@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import { navLinks } from '@/lib/placeholder-data';
 import { Button } from '@/components/ui/button';
@@ -10,7 +12,11 @@ export function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden bg-transparent">
       <div className="container mx-auto px-4">
-        <header className="fixed top-4 left-1/2 -translate-x-1/2 z-30 w-[95%] max-w-4xl">
+        <motion.header 
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-4 left-1/2 -translate-x-1/2 z-30 w-[95%] max-w-4xl">
           <div className="container mx-auto flex justify-center md:justify-end px-4">
             <nav className="flex items-center space-x-2 glass-card p-2 rounded-xl">
               {navLinks.map((link) => (
@@ -20,12 +26,16 @@ export function HeroSection() {
               ))}
             </nav>
           </div>
-        </header>
+        </motion.header>
 
         <div className="flex min-h-dvh items-center py-20 md:py-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center md:justify-start order-2 md:order-1 text-center md:text-left">
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+              >
                 <p className="text-lg text-accent mb-2 font-headline">Hi there, I'm</p>
                 <h1 className="font-headline text-4xl md:text-6xl font-bold text-primary">Zulfikar Achyar</h1>
                 <h2 className="text-xl md:text-2xl mt-3 font-medium text-foreground/80">
@@ -42,9 +52,13 @@ export function HeroSection() {
                     <a href="#contact">Get in Touch</a>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             </div>
-            <div className="order-1 md:order-2 flex justify-center">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="order-1 md:order-2 flex justify-center">
               <div className="relative w-[250px] h-[250px] md:w-[400px] md:h-[400px]">
                 {profileImage && (
                   <Image
@@ -60,7 +74,7 @@ export function HeroSection() {
                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-full -z-10 animate-pulse"></div>
                  <div className="absolute -top-4 -left-4 w-32 h-32 bg-accent/20 rounded-lg -z-10 transform rotate-12 animate-pulse delay-500"></div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

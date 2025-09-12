@@ -1,5 +1,3 @@
-# Firebase Studio
+# PersonaPage
 
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+A clean, minimalist, and professional personal landing page built with Next.js and Firebase Studio.

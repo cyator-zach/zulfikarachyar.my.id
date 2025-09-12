@@ -14,11 +14,11 @@ export default function Home() {
         <ScrollAnimationWrapper>
           <HeroSection />
         </ScrollAnimationWrapper>
-        <ScrollAnimationWrapper>
+        <ScrollAnimationWrapper animation="slide-up">
           <AboutSection />
         </ScrollAnimationWrapper>
         <PortfolioSection />
-        <ScrollAnimationWrapper>
+        <ScrollAnimationWrapper animation="slide-up">
           <ExperienceSection />
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper>

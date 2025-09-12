@@ -37,7 +37,7 @@ export function PortfolioSection() {
           {portfolioItems.map((item) => (
             <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1 h-full">
-                <Card className="overflow-hidden transition-all duration-300 flex flex-col group hover:shadow-xl border-transparent hover:border-border h-full">
+                <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl border h-full">
                   <CardHeader className="p-0">
                     <div className="aspect-video relative overflow-hidden">
                       <Image

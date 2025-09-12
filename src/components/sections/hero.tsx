@@ -10,7 +10,7 @@ export function HeroSection() {
   const profileImage = PlaceHolderImages.find(p => p.id === 'profile');
 
   return (
-    <section id="home" className="relative section-padding overflow-hidden animated-gradient">
+    <section id="home" className="relative section-padding pt-32 overflow-hidden animated-gradient">
       <div className="section-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center min-h-[60vh]">
           <motion.div

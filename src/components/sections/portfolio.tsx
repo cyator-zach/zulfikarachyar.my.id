@@ -18,16 +18,27 @@ export function PortfolioSection() {
 
   return (
     <div className="relative">
+      <Image
+        src="https://picsum.photos/seed/trees/1920/1080"
+        alt="Blurred nature background with trees"
+        fill
+        className="object-cover blur-sm"
+        data-ai-hint="nature trees"
+      />
+      <div 
+        className="absolute inset-0 bg-black/50"
+        aria-hidden="true"
+      />
       <div 
         className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-100/30 to-transparent pointer-events-none"
         aria-hidden="true"
       />
-      <Section id="portfolio" className="bg-background">
+      <Section id="portfolio" className="bg-transparent text-white relative">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold font-headline text-foreground">
+          <h2 className="text-3xl font-bold font-headline text-white">
             My Recent <span className="gradient-text">Work</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
             Here are a few projects I've worked on recently. Want to see more? <a href={`mailto:zulfikarachyar@gmail.com`} className="text-primary font-medium hover:underline">Email me</a>.
           </p>
         </div>
@@ -42,7 +53,7 @@ export function PortfolioSection() {
             {portfolioItems.map((item) => (
               <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1 h-full">
-                  <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-sm hover:shadow-xl border h-full">
+                  <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-slate-900/50 border-white/20 h-full">
                     <CardHeader className="p-0">
                       <div className="aspect-video relative overflow-hidden">
                         <Image
@@ -55,9 +66,9 @@ export function PortfolioSection() {
                         />
                       </div>
                     </CardHeader>
-                    <CardContent className="p-6 flex-grow flex flex-col bg-card">
-                      <CardTitle className="text-foreground text-xl font-bold">{item.title}</CardTitle>
-                      <CardDescription className="mt-2 text-foreground flex-grow">{item.description}</CardDescription>
+                    <CardContent className="p-6 flex-grow flex flex-col">
+                      <CardTitle className="text-white text-xl font-bold">{item.title}</CardTitle>
+                      <CardDescription className="mt-2 text-slate-300 flex-grow">{item.description}</CardDescription>
                       <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
                         <a href="#">
                           Case Study <ArrowRight className="w-4 h-4 ml-2" />

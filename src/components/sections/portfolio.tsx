@@ -13,6 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { ScrollAnimationWrapper } from '../scroll-animation';
 
 export function PortfolioSection() {
 
@@ -34,14 +35,16 @@ export function PortfolioSection() {
         aria-hidden="true"
       />
       <Section id="portfolio" className="bg-transparent text-white relative">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold font-headline text-white">
-            My Recent <span className="gradient-text">Work</span>
-          </h2>
-          <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
-            Here are a few projects I've worked on recently. Want to see more? <a href={`mailto:zulfikarachyar@gmail.com`} className="text-primary font-medium hover:underline">Email me</a>.
-          </p>
-        </div>
+        <ScrollAnimationWrapper animation='slide-up' delay={0}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold font-headline text-white">
+              My Recent <span className="gradient-text">Work</span>
+            </h2>
+            <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
+              Here are a few projects I've worked on recently. Want to see more? <a href={`mailto:zulfikarachyar@gmail.com`} className="text-primary font-medium hover:underline">Email me</a>.
+            </p>
+          </div>
+        </ScrollAnimationWrapper>
         <Carousel
           opts={{
             align: "start",
@@ -50,33 +53,35 @@ export function PortfolioSection() {
           className="w-full"
         >
           <CarouselContent>
-            {portfolioItems.map((item) => (
+            {portfolioItems.map((item, index) => (
               <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1 h-full">
-                  <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-slate-900/50 border-white/20 h-full">
-                    <CardHeader className="p-0">
-                      <div className="aspect-video relative overflow-hidden">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          data-ai-hint={item.imageHint}
-                        />
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-6 flex-grow flex flex-col">
-                      <CardTitle className="text-white text-xl font-bold">{item.title}</CardTitle>
-                      <CardDescription className="mt-2 text-slate-300 flex-grow">{item.description}</CardDescription>
-                      <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
-                        <a href="#">
-                          Case Study <ArrowRight className="w-4 h-4 ml-2" />
-                        </a>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </div>
+                <ScrollAnimationWrapper animation='slide-left' delay={index * 200}>
+                  <div className="p-1 h-full">
+                    <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-slate-900/50 border-white/20 h-full">
+                      <CardHeader className="p-0">
+                        <div className="aspect-video relative overflow-hidden">
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            data-ai-hint={item.imageHint}
+                          />
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-6 flex-grow flex flex-col">
+                        <CardTitle className="text-white text-xl font-bold">{item.title}</CardTitle>
+                        <CardDescription className="mt-2 text-slate-300 flex-grow">{item.description}</CardDescription>
+                        <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
+                          <a href="#">
+                            Case Study <ArrowRight className="w-4 h-4 ml-2" />
+                          </a>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </ScrollAnimationWrapper>
               </CarouselItem>
             ))}
           </CarouselContent>

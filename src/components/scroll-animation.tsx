@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 interface ScrollAnimationWrapperProps {
   children: ReactNode;
   className?: string;
-  animation?: "fade-in" | "slide-up";
+  animation?: "fade-in" | "slide-up" | "slide-left";
   delay?: number;
 }
 
@@ -41,7 +41,14 @@ export function ScrollAnimationWrapper({
     return () => observer.disconnect();
   }, [delay]);
 
-  const animationClass = animation === "slide-up" ? "slide-up-animate" : "section-animate";
+  const animationClasses = {
+    'fade-in': 'section-animate',
+    'slide-up': 'slide-up-animate',
+    'slide-left': 'slide-left-animate',
+  };
+
+  const animationClass = animationClasses[animation] || 'section-animate';
+
 
   return (
     <div

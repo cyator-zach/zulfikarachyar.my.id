@@ -4,8 +4,11 @@ import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'PersonaPage | Your Name',
-  description: 'Personal portfolio landing page for a professional profile.',
+  title: 'Zulfikar Achyar | Cloud & DevOps Enthusiast',
+  description: 'Personal portfolio website of Zulfikar Achyar, a fresh graduate Computer Engineering with a passion for Cloud Computing and DevOps. Explore my projects and experience.',
+  keywords: ['Zulfikar Achyar', 'Cloud Engineer', 'DevOps', 'Portfolio', 'Fresh Graduate', 'Computer Engineering'],
+  authors: [{ name: 'Zulfikar Achyar' }],
+  creator: 'Zulfikar Achyar',
 };
 
 export default function RootLayout({

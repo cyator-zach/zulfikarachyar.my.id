@@ -16,7 +16,7 @@ export default function Home() {
         <ExperienceSection />
         <ContactSection />
       </main>
-      <footer className="py-8 bg-secondary">
+      <footer className="py-8 bg-slate-900">
         <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
           <p>&copy; {new Date().getFullYear()} Zulfikar Achyar. All rights reserved.</p>
           <p className="mt-1">Built with Next.js and Tailwind CSS.</p>

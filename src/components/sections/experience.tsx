@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="bg-secondary">
+    <Section id="experience" className="bg-gradient-to-b from-blue-50 to-background">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h2 className="text-3xl font-bold font-headline text-foreground mb-4">
@@ -16,10 +16,10 @@ export function ExperienceSection() {
           </p>
           <div className="space-y-6">
             {experiences.map((exp, index) => (
-              <Card key={index} className="bg-background">
+              <Card key={index} className="bg-background/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="text-lg text-primary">{exp.position}</CardTitle>
-                  <CardDescription className="flex justify-between items-center">
+                  <CardDescription className="flex justify-between items-center text-foreground">
                     <span>{exp.company}</span>
                     <span className="font-medium">{exp.duration}</span>
                   </CardDescription>

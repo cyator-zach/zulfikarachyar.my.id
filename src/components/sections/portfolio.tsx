@@ -45,49 +45,49 @@ export function PortfolioSection() {
             </p>
           </div>
         </ScrollAnimationWrapper>
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent>
-            {portfolioItems.map((item, index) => (
-              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                <ScrollAnimationWrapper animation='slide-left' delay={index * 200}>
-                  <div className="p-1 h-full">
-                    <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-slate-900/50 border-white/20 h-full">
-                      <CardHeader className="p-0">
-                        <div className="aspect-video relative overflow-hidden">
-                          <Image
-                            src={item.imageUrl}
-                            alt={item.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            data-ai-hint={item.imageHint}
-                          />
-                        </div>
-                      </CardHeader>
-                      <CardContent className="p-6 flex-grow flex flex-col">
-                        <CardTitle className="text-white text-xl font-bold">{item.title}</CardTitle>
-                        <CardDescription className="mt-2 text-slate-300 flex-grow">{item.description}</CardDescription>
-                        <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
-                          <a href="#">
-                            Case Study <ArrowRight className="w-4 h-4 ml-2" />
-                          </a>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </ScrollAnimationWrapper>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
+        <ScrollAnimationWrapper animation='slide-left' delay={100}>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {portfolioItems.map((item) => (
+                <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-slate-900/50 border-white/20 h-full">
+                        <CardHeader className="p-0">
+                          <div className="aspect-video relative overflow-hidden">
+                            <Image
+                              src={item.imageUrl}
+                              alt={item.title}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              data-ai-hint={item.imageHint}
+                            />
+                          </div>
+                        </CardHeader>
+                        <CardContent className="p-6 flex-grow flex flex-col">
+                          <CardTitle className="text-white text-xl font-bold">{item.title}</CardTitle>
+                          <CardDescription className="mt-2 text-slate-300 flex-grow">{item.description}</CardDescription>
+                          <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
+                            <a href="#">
+                              Case Study <ArrowRight className="w-4 h-4 ml-2" />
+                            </a>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </ScrollAnimationWrapper>
       </Section>
     </div>
   );

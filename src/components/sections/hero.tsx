@@ -24,6 +24,19 @@ const letter = {
   },
 };
 
+const cursorVariants = {
+  blinking: {
+    opacity: [0, 1, 1, 0],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      repeatDelay: 0,
+      ease: "linear",
+      times: [0, 0.5, 0.5, 1]
+    }
+  }
+};
+
 export function HeroSection() {
   return (
     <section id="home" className="relative section-padding pt-32 overflow-hidden animated-gradient">
@@ -65,6 +78,13 @@ export function HeroSection() {
                   {char}
                 </motion.span>
               ))}
+               <motion.span
+                variants={cursorVariants}
+                animate="blinking"
+                className="inline-block text-primary"
+              >
+                .
+              </motion.span>
             </motion.h1>
             
             <p className="mt-6 max-w-xl text-muted-foreground mx-auto text-lg">

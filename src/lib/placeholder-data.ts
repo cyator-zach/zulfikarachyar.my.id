@@ -1,4 +1,4 @@
-import { Cloud, Code, Server, Network, ShieldCheck, Linkedin, Github } from 'lucide-react';
+import { Cloud, Code, Server, Network, ShieldCheck, Linkedin, Github, Instagram } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export const navLinks = [
@@ -72,8 +72,13 @@ export const contactLinks = [
   },
   {
     name: 'GitHub',
-    url: 'https://github.com/ZulfikarAchyar',
+    url: 'https://github.com/cyator-zach',
     icon: Github,
+  },
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/zulfikar_achyar',
+    icon: Instagram,
   },
 ];
 

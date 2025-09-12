@@ -1,37 +1,40 @@
 import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
-import { email, contactLinks } from '@/lib/placeholder-data';
-import { Mail } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { contactLinks } from '@/lib/placeholder-data';
 
 export function ContactSection() {
   return (
-    <Section id="contact" className="bg-transparent">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold font-headline text-primary">
-          Get in Touch
-          <div className="w-20 h-1 bg-accent mt-2 rounded-full mx-auto"></div>
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          I'm always open for a chat, collaboration, or just to say hi.
-          Feel free to reach out.
-        </p>
-        <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-          {contactLinks.map((link) => (
-            <Button key={link.name} asChild variant="outline" size="lg" className="w-full sm:w-auto glass-card border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
-                <link.icon className="mr-2" />
-                {link.name}
-              </a>
-            </Button>
-          ))}
+    <Section id="contact" className="bg-background">
+      <div className="grid md:grid-cols-2 gap-12">
+        <div>
+           <h2 className="text-3xl font-bold font-headline text-foreground">
+              Let's build something <span className="gradient-text">together</span>.
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            I'm currently available for freelance work and open to discussing new projects.
+          </p>
+          <div className="mt-8 flex flex-col gap-4">
+            <h3 className="text-lg font-semibold">Contact Details</h3>
+             <p className="text-muted-foreground">zulfikarachyar@gmail.com</p>
+             <div className="flex space-x-4">
+                {contactLinks.map((link) => (
+                  <Button key={link.name} asChild variant="outline" size="icon">
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
+                      <link.icon className="w-5 h-5" />
+                    </a>
+                  </Button>
+              ))}
+             </div>
+          </div>
         </div>
-        <div className="mt-8 border-t pt-8">
-            <p className="text-muted-foreground">Or email me directly at:</p>
-            <a href={`mailto:${email}`} className="text-primary font-semibold text-lg hover:underline inline-flex items-center gap-2 mt-2">
-                <Mail className="w-5 h-5"/>
-                {email}
-            </a>
-        </div>
+        <form className="space-y-4">
+            <Input type="text" placeholder="Name" className="h-12" />
+            <Input type="email" placeholder="Email" className="h-12" />
+            <Textarea placeholder="Message" rows={5} />
+            <Button type="submit" size="lg" className="w-full">Send Message</Button>
+        </form>
       </div>
     </Section>
   );

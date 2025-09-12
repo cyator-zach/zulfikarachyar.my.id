@@ -1,81 +1,63 @@
 "use client";
 
 import Image from 'next/image';
-import { navLinks } from '@/lib/placeholder-data';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 
 export function HeroSection() {
   const profileImage = PlaceHolderImages.find(p => p.id === 'profile');
 
   return (
-    <section id="home" className="relative overflow-hidden bg-transparent">
-      <div className="container mx-auto px-4">
-        <motion.header 
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="fixed top-4 left-1/2 -translate-x-1/2 z-30 w-[95%] max-w-4xl">
-          <div className="container mx-auto flex justify-center md:justify-end px-4">
-            <nav className="flex items-center space-x-2 glass-card p-2 rounded-xl">
-              {navLinks.map((link) => (
-                <Button key={link.href} variant="ghost" asChild>
-                  <a href={link.href}>{link.label}</a>
-                </Button>
-              ))}
-            </nav>
-          </div>
-        </motion.header>
-
-        <div className="flex min-h-dvh items-center py-20 md:py-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="flex justify-center md:justify-start order-2 md:order-1 text-center md:text-left">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-              >
-                <p className="text-lg text-accent mb-2 font-headline">Hi there, I'm</p>
-                <h1 className="font-headline text-4xl md:text-6xl font-bold text-primary">Zulfikar Achyar</h1>
-                <h2 className="text-xl md:text-2xl mt-3 font-medium text-foreground/80">
-                  Fresh Graduate | Cloud Engineer | DevOps Enthusiast
-                </h2>
-                <p className="mt-6 max-w-xl text-muted-foreground mx-auto md:mx-0">
-                  A passionate Computer Engineering graduate ready to build and optimize the cloud infrastructure of the future.
-                </p>
-                <div className="mt-8 flex gap-4 justify-center md:justify-start">
-                  <Button asChild size="lg">
-                    <a href="#portfolio">View My Work</a>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="glass-card">
-                    <a href="#contact">Get in Touch</a>
-                  </Button>
-                </div>
-              </motion.div>
+    <section id="home" className="relative section-padding bg-background overflow-hidden">
+      <div className="absolute inset-0 w-full h-full bg-secondary/30 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] -z-0"></div>
+      <div className="section-container">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center min-h-[60vh]">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="text-center md:text-left"
+          >
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground !leading-tight">
+              Fresh Graduate
+              <br />
+              <span className="text-primary">Cloud Engineer</span> &
+              <br />
+              DevOps Enthusiast
+            </h1>
+            
+            <p className="mt-6 max-w-xl text-muted-foreground mx-auto md:mx-0 text-lg">
+              A passionate Computer Engineering graduate ready to build and optimize the cloud infrastructure of the future.
+            </p>
+            <div className="mt-8 flex gap-4 justify-center md:justify-start">
+              <Button asChild size="lg">
+                <a href="#portfolio">My Work</a>
+              </Button>
             </div>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="order-1 md:order-2 flex justify-center">
-              <div className="relative w-[250px] h-[250px] md:w-[400px] md:h-[400px]">
-                {profileImage && (
-                  <Image
-                    src={profileImage.imageUrl}
-                    alt="Professional profile picture"
-                    width={400}
-                    height={400}
-                    className="rounded-full object-cover shadow-2xl border-8 border-background/50"
-                    data-ai-hint={profileImage.imageHint}
-                    priority
-                  />
-                )}
-                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 rounded-full -z-10 animate-pulse"></div>
-                 <div className="absolute -top-4 -left-4 w-32 h-32 bg-accent/20 rounded-lg -z-10 transform rotate-12 animate-pulse delay-500"></div>
-              </div>
-            </motion.div>
-          </div>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="flex justify-center">
+            <div className="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px]">
+              {profileImage && (
+                <Image
+                  src={profileImage.imageUrl}
+                  alt="Professional profile picture"
+                  fill
+                  className="rounded-3xl object-cover shadow-2xl"
+                  data-ai-hint={profileImage.imageHint}
+                  priority
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              )}
+               <div className="absolute -bottom-5 -right-5 w-28 h-28 bg-gradient-to-r from-teal-400 to-amber-400 rounded-full -z-10 filter blur-xl opacity-50 animate-pulse"></div>
+               <div className="absolute -top-5 -left-5 w-32 h-32 bg-primary/20 rounded-lg -z-10 transform rotate-12 filter blur-xl opacity-50 animate-pulse delay-500"></div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,34 +1,47 @@
 import { Section } from '@/components/section';
 import { experiences } from '@/lib/placeholder-data';
-import { Briefcase } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import Image from 'next/image';
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="bg-transparent">
-      <h2 className="text-3xl font-bold font-headline text-primary text-center mb-12">
-        My Journey
-        <div className="w-20 h-1 bg-accent mt-2 rounded-full mx-auto"></div>
-      </h2>
-      <div className="relative">
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" aria-hidden="true"></div>
-        
-        {experiences.map((exp, index) => (
-          <div key={index} className="relative mb-12">
-            <div className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-              <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                <div className={`p-6 rounded-lg glass-card transition-all duration-300 hover:shadow-2xl hover:border-accent ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                  <p className="text-sm text-accent font-semibold">{exp.duration}</p>
-                  <h3 className="text-xl font-bold text-foreground mt-1">{exp.position}</h3>
-                  <p className="text-md font-medium text-muted-foreground">{exp.company}</p>
-                  <p className="text-sm text-muted-foreground mt-2">{exp.description}</p>
-                </div>
-              </div>
-            </div>
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background p-2 rounded-full border-2 border-primary">
-              <Briefcase className="w-5 h-5 text-primary" />
-            </div>
+    <Section id="experience" className="bg-secondary">
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 className="text-3xl font-bold font-headline text-foreground mb-4">
+            My Experience
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            I'm passionate about learning and growing. Here's a summary of my journey so far.
+          </p>
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
+              <Card key={index} className="bg-background">
+                <CardHeader>
+                  <CardTitle className="text-lg text-primary">{exp.position}</CardTitle>
+                  <CardDescription className="flex justify-between items-center">
+                    <span>{exp.company}</span>
+                    <span className="font-medium">{exp.duration}</span>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">{exp.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        ))}
+        </div>
+        <div className="hidden md:block">
+          <div className="relative w-full aspect-square">
+            <Image 
+              src="https://picsum.photos/seed/experience/800/800"
+              alt="Decorative abstract image"
+              fill
+              className="rounded-3xl object-cover"
+              data-ai-hint="abstract technology"
+            />
+          </div>
+        </div>
       </div>
     </Section>
   );

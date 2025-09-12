@@ -1,10 +1,10 @@
-import { Cloud, Code, Server, Network, ShieldCheck, CodeXml } from 'lucide-react';
+import { Cloud, Code, Server, Network, ShieldCheck, Linkedin } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export const navLinks = [
-  { href: '#about-me', label: 'About' },
-  { href: '#portfolio', label: 'Portfolio' },
-  { href: '#experience', label: 'Journey' },
+  { href: '#about', label: 'About' },
+  { href: '#portfolio', label: 'Work' },
+  { href: '#experience', label: 'Experience' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -39,18 +39,11 @@ export const portfolioItems = [
     imageUrl: 'https://picsum.photos/seed/3/600/400',
     imageHint: 'container orchestration',
   },
-   {
-    id: 'proj4',
-    title: 'Serverless Platform',
-    description: 'Developing a backend API using AWS Lambda and API Gateway for a fully serverless app.',
-    imageUrl: 'https://picsum.photos/seed/5/600/400',
-    imageHint: 'serverless architecture',
-  },
 ];
 
 export const experiences = [
   {
-    company: 'Bangkit Academy led by Google, Tokopedia, Gojek & Traveloka',
+    company: 'Bangkit Academy',
     position: 'Cloud Computing Cohort',
     duration: 'Feb 2024 - Jul 2024',
     description:
@@ -76,7 +69,7 @@ export const contactLinks = [
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/zulfikar-achyar-79b15b257/',
-    icon: Network,
+    icon: Linkedin,
   },
 ];
 

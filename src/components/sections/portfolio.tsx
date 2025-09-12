@@ -20,7 +20,7 @@ export function PortfolioSection() {
     <Section id="portfolio" className="bg-background">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold font-headline text-foreground">
-          My Recent Work
+          My Recent <span className="gradient-text">Work</span>
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
           Here are a few projects I've worked on recently. Want to see more? <a href={`mailto:zulfikarachyar@gmail.com`} className="text-primary font-medium hover:underline">Email me</a>.
@@ -37,7 +37,7 @@ export function PortfolioSection() {
           {portfolioItems.map((item) => (
             <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1 h-full">
-                <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-md hover:shadow-xl border h-full">
+                <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-sm hover:shadow-xl border h-full">
                   <CardHeader className="p-0">
                     <div className="aspect-video relative overflow-hidden">
                       <Image

@@ -8,7 +8,7 @@ export function ExperienceSection() {
     <Section id="experience" className="bg-gradient-to-b from-blue-50 to-background">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-3xl font-bold font-headline mb-4">
+          <h2 className="text-3xl font-bold font-headline mb-4 text-foreground">
             My <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
@@ -19,9 +19,9 @@ export function ExperienceSection() {
               <Card key={index} className="bg-background/80 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="text-lg text-foreground">{exp.position}</CardTitle>
-                  <CardDescription className="flex justify-between items-center text-foreground">
-                    <span>{exp.company}</span>
-                    <span className="font-medium">{exp.duration}</span>
+                  <CardDescription className="flex justify-between items-center">
+                    <span className="text-foreground/80">{exp.company}</span>
+                    <span className="font-medium text-foreground/80">{exp.duration}</span>
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

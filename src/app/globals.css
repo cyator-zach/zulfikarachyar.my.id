@@ -4,19 +4,19 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%; /* Almost White */
-    --foreground: 240 10% 3.9%; /* Dark Slate Gray */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 262 82% 55%; /* A slightly adjusted Indigo */
+    --primary: 262 82% 55%;
     --primary-foreground: 0 0% 98%;
     --secondary: 240 5% 90%;
     --secondary-foreground: 240 10% 3.9%;
     --muted: 240 5% 90%;
     --muted-foreground: 240 5% 45%;
-    --accent: 300 81% 55%; /* A slightly adjusted Pink */
+    --accent: 300 81% 55%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -67,5 +67,11 @@
   }
   .slide-up-animate.is-visible {
     @apply opacity-100 translate-y-0;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-lg border border-white/20 shadow-lg;
   }
 }

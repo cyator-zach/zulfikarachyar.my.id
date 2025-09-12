@@ -38,7 +38,7 @@ export function PortfolioSection() {
   };
 
   return (
-    <Section id="portfolio" className="bg-secondary/20">
+    <Section id="portfolio" className="bg-transparent">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
         <div>
           <h2 className="text-3xl font-bold font-headline text-primary">
@@ -49,7 +49,7 @@ export function PortfolioSection() {
             Here are some of the projects I've worked on, showcasing my skills in various technologies.
           </p>
         </div>
-        <Button onClick={handleOptimizeLayout} disabled={isOptimizing} className="mt-4 md:mt-0">
+        <Button onClick={handleOptimizeLayout} disabled={isOptimizing} className="mt-4 md:mt-0 glass-card">
           {isOptimizing ? (
             <LoaderCircle className="animate-spin" />
           ) : (
@@ -60,7 +60,7 @@ export function PortfolioSection() {
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {portfolioItems.map((item, index) => (
-          <Card key={item.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card border border-border/50 hover:border-accent group">
+          <Card key={item.id} className="overflow-hidden transition-all duration-300 flex flex-col glass-card group hover:shadow-2xl hover:border-accent">
             <CardHeader className="p-0">
               <div className="aspect-video relative overflow-hidden">
                 <Image
@@ -85,7 +85,7 @@ export function PortfolioSection() {
       </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[625px]">
+        <DialogContent className="sm:max-w-[625px] glass-card">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-primary">
               <Wand2 /> Portfolio Layout Suggestion
@@ -98,11 +98,11 @@ export function PortfolioSection() {
             <div className="grid gap-4 py-4 text-sm">
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Suggested Layout:</h3>
-                <p className="text-muted-foreground bg-secondary/50 p-3 rounded-md">{optimizationResult.suggestedLayout}</p>
+                <p className="text-muted-foreground bg-black/10 p-3 rounded-md">{optimizationResult.suggestedLayout}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Reasoning:</h3>
-                <p className="text-muted-foreground bg-secondary/50 p-3 rounded-md">{optimizationResult.reasoning}</p>
+                <p className="text-muted-foreground bg-black/10 p-3 rounded-md">{optimizationResult.reasoning}</p>
               </div>
             </div>
           )}

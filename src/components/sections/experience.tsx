@@ -4,7 +4,7 @@ import { Briefcase } from 'lucide-react';
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="bg-background">
+    <Section id="experience" className="bg-transparent">
       <h2 className="text-3xl font-bold font-headline text-primary text-center mb-12">
         My Journey
         <div className="w-20 h-1 bg-accent mt-2 rounded-full mx-auto"></div>
@@ -16,7 +16,7 @@ export function ExperienceSection() {
           <div key={index} className="relative mb-12">
             <div className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
               <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                <div className={`p-6 bg-card rounded-lg shadow-lg border border-border/50 hover:border-accent transition-colors ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                <div className={`p-6 rounded-lg glass-card transition-all duration-300 hover:shadow-2xl hover:border-accent ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
                   <p className="text-sm text-accent font-semibold">{exp.duration}</p>
                   <h3 className="text-xl font-bold text-foreground mt-1">{exp.position}</h3>
                   <p className="text-md font-medium text-muted-foreground">{exp.company}</p>

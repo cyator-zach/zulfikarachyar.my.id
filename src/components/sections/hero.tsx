@@ -2,19 +2,17 @@ import Image from 'next/image';
 import { navLinks } from '@/lib/placeholder-data';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { motion } from 'framer-motion';
 
 export function HeroSection() {
   const profileImage = PlaceHolderImages.find(p => p.id === 'profile');
 
   return (
-    <section id="home" className="relative overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-secondary/20 -z-10"></div>
-       <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-primary/10 to-transparent -z-10 opacity-50"></div>
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-t from-accent/10 to-transparent -z-10 opacity-50"></div>
+    <section id="home" className="relative overflow-hidden bg-transparent">
       <div className="container mx-auto px-4">
-        <header className="absolute top-0 left-0 right-0 z-10 py-4">
+        <header className="fixed top-4 left-1/2 -translate-x-1/2 z-30 w-[95%] max-w-4xl">
           <div className="container mx-auto flex justify-center md:justify-end px-4">
-            <nav className="flex items-center space-x-2 bg-background/50 backdrop-blur-sm p-2 rounded-lg border border-border/50">
+            <nav className="flex items-center space-x-2 glass-card p-2 rounded-xl">
               {navLinks.map((link) => (
                 <Button key={link.href} variant="ghost" asChild>
                   <a href={link.href}>{link.label}</a>
@@ -40,7 +38,7 @@ export function HeroSection() {
                   <Button asChild size="lg">
                     <a href="#portfolio">View My Work</a>
                   </Button>
-                  <Button asChild variant="outline" size="lg">
+                  <Button asChild variant="outline" size="lg" className="glass-card">
                     <a href="#contact">Get in Touch</a>
                   </Button>
                 </div>
@@ -54,7 +52,7 @@ export function HeroSection() {
                     alt="Professional profile picture"
                     width={400}
                     height={400}
-                    className="rounded-full object-cover shadow-2xl border-8 border-background"
+                    className="rounded-full object-cover shadow-2xl border-8 border-background/50"
                     data-ai-hint={profileImage.imageHint}
                     priority
                   />

@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export function AboutSection() {
   return (
-    <Section id="about-me" className="bg-secondary/20">
+    <Section id="about-me" className="bg-transparent">
       <div className="grid md:grid-cols-5 gap-12 items-start">
         <div className="md:col-span-3">
           <h2 className="text-3xl font-bold font-headline text-primary mb-4">
@@ -25,7 +25,7 @@ export function AboutSection() {
           <h3 className="text-2xl font-bold font-headline mb-4">Core Skills</h3>
           <div className="grid grid-cols-2 gap-4">
             {skills.map((skill) => (
-              <Card key={skill.name} className="bg-card hover:shadow-lg hover:border-accent transition-all duration-300">
+              <Card key={skill.name} className="glass-card transition-all duration-300 hover:border-accent hover:shadow-2xl">
                 <CardContent className="p-4 flex items-center gap-4">
                   <skill.icon className="w-8 h-8 text-accent" />
                   <span className="font-semibold text-foreground/80">{skill.name}</span>

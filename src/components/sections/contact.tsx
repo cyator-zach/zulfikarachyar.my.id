@@ -5,7 +5,7 @@ import { Mail } from 'lucide-react';
 
 export function ContactSection() {
   return (
-    <Section id="contact" className="bg-secondary/20">
+    <Section id="contact" className="bg-transparent">
       <div className="text-center">
         <h2 className="text-3xl font-bold font-headline text-primary">
           Get in Touch
@@ -17,7 +17,7 @@ export function ContactSection() {
         </p>
         <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
           {contactLinks.map((link) => (
-            <Button key={link.name} asChild variant="outline" size="lg" className="w-full sm:w-auto hover:bg-accent hover:text-accent-foreground border-accent text-accent">
+            <Button key={link.name} asChild variant="outline" size="lg" className="w-full sm:w-auto glass-card border-accent text-accent hover:bg-accent hover:text-accent-foreground">
               <a href={link.url} target="_blank" rel="noopener noreferrer">
                 <link.icon className="mr-2" />
                 {link.name}

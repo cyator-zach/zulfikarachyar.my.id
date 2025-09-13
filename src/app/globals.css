@@ -65,6 +65,11 @@
     animation: pulse-gradient 10s ease-in-out infinite;
   }
 
+  .bg-animated-blur {
+    background-image: radial-gradient(ellipse 80% 80% at 50% -20%, hsl(var(--primary) / 0.3), hsl(var(--background)));
+    animation: pulse-blur 12s ease-in-out infinite;
+  }
+
   /* Reveal on Scroll Animations */
   .section-animate {
     opacity: 0;
@@ -135,4 +140,19 @@
 		background-size: 200% 200%;
     background-position: 50% 50%;
 	}
+}
+
+@keyframes pulse-blur {
+  0% {
+    background-position: 50% -20%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 50% -20%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 50% -20%;
+    opacity: 0.6;
+  }
 }

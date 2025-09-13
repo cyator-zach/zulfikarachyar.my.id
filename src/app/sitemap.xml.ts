@@ -7,14 +7,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const portfolioUrls = portfolioItems.map(item => ({
     url: `${siteUrl}/portfolio/${item.id}`,
-    lastModified: new Date(item.date),
+    lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));
 
   const tutorialUrls = tutorialItems.map(item => ({
     url: `${siteUrl}/tutorials/${item.id}`,
-    lastModified: new Date(item.date),
+    lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));

@@ -81,7 +81,7 @@ export default function TutorialsPage() {
                 <Input
                   type="search"
                   placeholder="Search tutorials..."
-                  className="pl-12 w-full h-14 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg focus-visible:ring-primary focus-visible:ring-2"
+                  className="pl-12 w-full h-14 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:shadow-primary/20 focus-visible:shadow-[0_0_25px]"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

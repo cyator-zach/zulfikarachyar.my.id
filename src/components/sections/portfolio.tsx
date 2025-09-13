@@ -12,10 +12,32 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
 import { ScrollAnimationWrapper } from '../scroll-animation';
+import React from 'react';
 
 export function PortfolioSection() {
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
+  const scrollTo = (index: number) => {
+    api?.scrollTo(index);
+  };
 
   return (
     <div className="relative">
@@ -31,7 +53,7 @@ export function PortfolioSection() {
         aria-hidden="true"
       />
       <div 
-        className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-100/30 to-transparent pointer-events-none"
+        className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-background/30 to-transparent pointer-events-none"
         aria-hidden="true"
       />
       <Section id="portfolio" className="bg-transparent text-white relative">
@@ -45,8 +67,10 @@ export function PortfolioSection() {
             </p>
           </div>
         </ScrollAnimationWrapper>
+        
         <ScrollAnimationWrapper animation='slide-left' delay={100}>
           <Carousel
+            setApi={setApi}
             opts={{
               align: "start",
               loop: true,
@@ -87,6 +111,18 @@ export function PortfolioSection() {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
+          <div className="py-4 text-center text-sm text-muted-foreground flex justify-center gap-2">
+            {Array.from({ length: count }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollTo(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index + 1 === current ? 'w-8 bg-primary' : 'w-2 bg-white/50'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </ScrollAnimationWrapper>
       </Section>
     </div>

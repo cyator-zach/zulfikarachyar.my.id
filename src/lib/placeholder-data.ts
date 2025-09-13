@@ -76,6 +76,13 @@ export const portfolioItems = [
 export const experiences = [
   {
     company: 'Diskominfo Kabupaten Langkat',
+    position: 'Web Developer (Internship)',
+    duration: 'Mei 2024 - Jul 2024',
+    description:
+      'Assisted in the development of a local network monitoring website to support internal usage.',
+  },
+  {
+    company: 'Diskominfo Kabupaten Langkat',
     position: 'Network Technician (Internship)',
     duration: 'Feb 2024 - Mei 2024',
     description:

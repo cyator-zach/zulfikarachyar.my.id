@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ScrollAnimationWrapper } from "@/components/scroll-animation";
+import { ContactSection } from "@/components/sections/contact";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -94,7 +95,8 @@ export default function TutorialsPage() {
 
         </div>
       </main>
-      <footer className="py-8 bg-slate-900 mt-16">
+      <ContactSection />
+      <footer className="py-8 bg-slate-900">
         <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
           <p>&copy; 2024 Zulfikar Achyar. All rights reserved.</p>
         </div>

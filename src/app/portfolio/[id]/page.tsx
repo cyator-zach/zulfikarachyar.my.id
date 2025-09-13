@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
+import { ContactSection } from '@/components/sections/contact';
 
 type Props = {
   params: { id: string };
@@ -73,7 +74,8 @@ export default function PortfolioDetailPage({ params }: { params: { id:string } 
           </article>
         </div>
       </main>
-      <footer className="py-8 bg-slate-900 mt-16">
+      <ContactSection />
+      <footer className="py-8 bg-slate-900">
         <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
           <p>&copy; 2024 Zulfikar Achyar. All rights reserved.</p>
         </div>

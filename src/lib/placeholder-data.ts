@@ -75,6 +75,20 @@ export const portfolioItems = [
 
 export const experiences = [
   {
+    company: 'Confidential (Healthcare System Project)',
+    position: 'Fullstack Developer (Freelance)',
+    duration: 'Jul 2025 - Aug 2025',
+    description:
+      'Developed a fullstack web application for a clinic management system (e-homecare). Implemented secure role-based authentication, CRUD operations for patient and clinic data, and customized dashboards for different user roles.',
+  },
+  {
+    company: 'Confidential (Personal Project)',
+    position: 'Backend Developer (Freelance)',
+    duration: 'Jun 2025 - Aug 2025',
+    description:
+      'Developed a secure backend system implementing Two-Factor Authentication (2FA) using Google Authenticator, Gmail, and Telegram bot integration.',
+  },
+  {
     company: 'Diskominfo Kabupaten Langkat',
     position: 'Web Developer (Internship)',
     duration: 'Mei 2024 - Jul 2024',

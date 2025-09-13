@@ -43,7 +43,7 @@ function MoreTutorialsSection({ currentTutorialId }: { currentTutorialId: string
   }
 
   return (
-    <Section id="more-tutorials" className="bg-secondary dark:bg-gradient-to-b dark:from-slate-900 dark:to-black">
+    <Section id="more-tutorials" className="mt-24 bg-secondary dark:bg-gradient-to-b dark:from-slate-900 dark:to-black">
        <ScrollAnimationWrapper animation='slide-up'>
         <div className="text-center mb-12">
             <h2 className="text-3xl font-bold font-headline text-foreground dark:text-white">
@@ -132,7 +132,7 @@ export default function TutorialDetailPage({ params }: { params: { id: string } 
                     This is the full content of the tutorial. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
                  <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesunt.
                 </p>
             </div>
           </article>

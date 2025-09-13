@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Section } from '@/components/section';
 import { Card, CardContent, CardHeader, CardDescription, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -41,7 +42,7 @@ export function PortfolioSection() {
 
   return (
     <div className="relative bg-secondary dark:bg-gradient-to-b dark:from-slate-900 dark:to-black">
-      <Section id="portfolio" className="bg-transparent relative">
+      <Section id="portfolio" className="relative">
         <ScrollAnimationWrapper animation='slide-up' delay={0}>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold font-headline text-foreground dark:text-white">
@@ -66,29 +67,29 @@ export function PortfolioSection() {
               {portfolioItems.map((item) => (
                 <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
-                      <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
-                        <CardHeader className="p-0">
-                          <div className="aspect-video relative overflow-hidden">
-                            <Image
-                              src={item.imageUrl}
-                              alt={item.title}
-                              fill
-                              className="object-cover group-hover:scale-105 transition-transform duration-500"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              data-ai-hint={item.imageHint}
-                            />
-                          </div>
-                        </CardHeader>
-                        <CardContent className="p-6 flex-grow flex flex-col">
-                          <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
-                          <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
-                          <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
-                            <a href="#">
-                              Case Study <ArrowRight className="w-4 h-4 ml-2" />
-                            </a>
-                          </Button>
-                        </CardContent>
-                      </Card>
+                      <Link href={`/portfolio/${item.id}`} className="block h-full group">
+                        <Card className="overflow-hidden transition-all duration-300 flex flex-col shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
+                          <CardHeader className="p-0">
+                            <div className="aspect-video relative overflow-hidden">
+                              <Image
+                                src={item.imageUrl}
+                                alt={item.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                data-ai-hint={item.imageHint}
+                              />
+                            </div>
+                          </CardHeader>
+                          <CardContent className="p-6 flex-grow flex flex-col">
+                            <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
+                            <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
+                            <div className="p-0 h-auto mt-4 self-start text-primary font-semibold flex items-center">
+                                Case Study <ArrowRight className="w-4 h-4 ml-2" />
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
                     </div>
                 </CarouselItem>
               ))}

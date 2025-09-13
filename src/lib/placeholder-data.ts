@@ -7,7 +7,6 @@ export const navLinks = [
   { href: '#portfolio', label: 'Work' },
   { href: '#experience', label: 'Experience' },
   { href: '/tutorials', label: 'Tutorial' },
-  { href: '#contact', label: 'Contact' },
 ];
 
 export const skills: { name: string; icon: LucideIcon }[] = [
@@ -25,6 +24,12 @@ export const portfolioItems = [
     description: 'A Bangkit course project building a CI/CD pipeline for deploying a web app to AWS.',
     imageUrl: 'https://picsum.photos/seed/1/600/400',
     imageHint: 'cloud infrastructure',
+    tags: ['AWS', 'CI/CD', 'Terraform', 'Docker'],
+    liveUrl: '#',
+    repoUrl: '#',
+    challenge: 'The main challenge was to automate the entire deployment lifecycle, from code commit to a live, scalable environment in the cloud, while ensuring security and reliability.',
+    solution: 'We designed a complete CI/CD pipeline using GitHub Actions. Terraform was used for Infrastructure as Code (IaC) to provision resources on AWS, including VPC, EC2 instances, and load balancers. The application was containerized using Docker for consistent environments.',
+    results: 'Achieved a fully automated deployment process, reducing manual intervention by 90%. Improved deployment frequency and stability, allowing for faster iteration and feedback cycles.',
   },
   {
     id: 'proj2',
@@ -32,6 +37,12 @@ export const portfolioItems = [
     description: 'A personal project using Python and Flask for real-time data visualization.',
     imageUrl: 'https://picsum.photos/seed/2/600/400',
     imageHint: 'data analytics dashboard',
+    tags: ['Python', 'Flask', 'Pandas', 'Chart.js'],
+    liveUrl: '#',
+    repoUrl: '#',
+    challenge: 'The goal was to create a web application that could ingest CSV data, process it, and present it in an interactive and easily understandable dashboard for non-technical users.',
+    solution: 'A web app was built using Flask as the backend to handle data uploads and processing with the Pandas library. The frontend used Chart.js to render interactive charts and graphs, providing a dynamic user experience for data exploration.',
+    results: 'Successfully created a tool that allows users to upload their own datasets and instantly gain visual insights, making data analysis more accessible.',
   },
   {
     id: 'proj3',
@@ -39,6 +50,12 @@ export const portfolioItems = [
     description: 'Experimenting with microservices architecture using Docker and Kubernetes.',
     imageUrl: 'https://picsum.photos/seed/3/600/400',
     imageHint: 'container orchestration',
+    tags: ['Docker', 'Kubernetes', 'Microservices', 'GKE'],
+    liveUrl: '#',
+    repoUrl: '#',
+    challenge: 'To break down a monolithic application into a set of independently deployable microservices and manage them effectively for scalability and resilience.',
+    solution: 'The application was refactored into several microservices, each containerized with Docker. Kubernetes on Google Kubernetes Engine (GKE) was used to orchestrate the containers, managing service discovery, load balancing, and automated scaling.',
+    results: 'Improved modularity and scalability of the application. Enabled independent updates for each service, leading to a more agile development workflow.',
   },
 ];
 

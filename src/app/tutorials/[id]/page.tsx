@@ -54,29 +54,17 @@ function MoreTutorialsSection({ currentTutorialId }: { currentTutorialId: string
             </p>
         </div>
       </ScrollAnimationWrapper>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-3xl mx-auto space-y-6">
         {recentTutorials.map((item, index) => (
             <ScrollAnimationWrapper key={item.id} animation="slide-up" delay={index * 100}>
-                <Link href={`/tutorials/${item.id}`} className="block h-full group">
-                <Card className="overflow-hidden transition-all duration-300 flex flex-col shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
-                    <CardHeader className="p-0">
-                    <div className="aspect-video relative overflow-hidden">
-                        <Image
-                        src={item.imageUrl}
-                        alt={item.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        data-ai-hint={item.imageHint}
-                        />
-                    </div>
-                    </CardHeader>
-                    <CardContent className="p-6 flex-grow flex flex-col">
-                    <span className="text-sm font-semibold text-primary mb-2">{item.category}</span>
-                    <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
-                    <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
-                    <div className="p-0 h-auto mt-4 self-start text-primary font-semibold flex items-center">
-                        Read More <ArrowRight className="w-4 h-4 ml-2" />
+                <Link href={`/tutorials/${item.id}`} className="block group">
+                <Card className="transition-all duration-300 shadow-md hover:shadow-xl bg-card dark:bg-slate-900/50 dark:border-white/20 hover:border-primary/30">
+                    <CardContent className="p-6">
+                      <span className="text-sm font-semibold text-primary mb-2 block">{item.category}</span>
+                      <CardTitle className="text-card-foreground dark:text-white text-xl font-bold group-hover:text-primary">{item.title}</CardTitle>
+                      <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300">{item.description}</CardDescription>
+                       <div className="p-0 h-auto mt-4 self-start text-primary font-semibold flex items-center">
+                        Read More <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                     </div>
                     </CardContent>
                 </Card>

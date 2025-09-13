@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 import { portfolioItems, tutorialItems } from '@/lib/placeholder-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = 'https://zulfikarachyar.my.id'; // Ganti dengan domain Anda yang sebenarnya
+  const siteUrl = 'https://zulfikarachyar.my.id';
 
   const portfolioUrls = portfolioItems.map(item => ({
     url: `${siteUrl}/portfolio/${item.id}`,
@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/sitemap`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
     },
   ];
 

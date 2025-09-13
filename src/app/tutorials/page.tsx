@@ -81,7 +81,7 @@ export default function TutorialsPage() {
                 <Input
                   type="search"
                   placeholder="Search tutorials..."
-                  className="pl-12 w-full h-14 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:shadow-primary/20 focus-visible:shadow-[0_0_25px]"
+                  className="pl-12 w-full h-14 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-primary/20 shadow-[0_0_25px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -172,3 +172,5 @@ export default function TutorialsPage() {
     </div>
   );
 }
+
+    

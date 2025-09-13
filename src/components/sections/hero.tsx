@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
+import React from 'react';
 
 const title = "Fresh Graduate";
 const subtitle1 = "Cloud Engineer";
@@ -38,9 +40,27 @@ const cursorVariants = {
 };
 
 export function HeroSection() {
+  const [animationData, setAnimationData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch('https://lottie.host/3e4b4e8c-dab3-4a26-83b4-b738062d8174/orEDc0Gynk.lottie')
+      .then(response => response.json())
+      .then(data => setAnimationData(data));
+  }, []);
+
   return (
-    <section id="home" className="relative section-padding pt-32 overflow-hidden animated-gradient">
-      <div className="section-container">
+    <section id="home" className="relative section-padding pt-32 overflow-hidden bg-background">
+      {animationData && (
+        <div className="absolute inset-0 z-0">
+          <Lottie 
+            animationData={animationData} 
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      )}
+       <div className="absolute inset-0 bg-background/60 dark:bg-background/80" />
+
+      <div className="section-container relative z-10">
         <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
           <motion.div
             initial={{ opacity: 0, y: -50 }}

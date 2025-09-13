@@ -161,34 +161,68 @@ Now, you can access your application at \`http://localhost:4000\`.
   },
   {
     id: 'tut2',
-    title: 'Deploying a Next.js App to Vercel',
-    description: 'Step-by-step tutorial on deploying your Next.js project seamlessly.',
+    title: 'Buku Panduan SEO Next.js: Raih Peringkat Lebih Tinggi',
+    description: 'Pelajari cara meningkatkan SEO aplikasi Anda menggunakan fitur-fitur canggih dari Next.js dan Vercel untuk mendapatkan audiens yang lebih besar.',
     imageUrl: 'https://picsum.photos/seed/11/600/400',
-    imageHint: 'serverless deployment',
-    author: authorDetails.name,
-    authorImageUrl: authorDetails.imageUrl,
-    date: '2024-07-15',
+    imageHint: 'seo analytics',
+    author: 'Alice Alexandra Moore',
+    authorImageUrl: 'https://picsum.photos/seed/author1/100/100',
+    date: '2023-02-23',
     category: 'Next.js',
     content: `
-Vercel is the creator of Next.js and provides a first-class deployment experience for Next.js applications.
+Aplikasi Anda layak mendapat audiens yang lebih besar.
 
-### Step 1: Push Your Code to a Git Provider
+Optimasi mesin pencari (SEO) memudahkan pelanggan menemukan dan memercayai Anda. Namun, meningkatkan SEO aplikasi Anda seringkali merupakan proses yang tidak transparan. Ketika kesuksesan SEO terasa seperti keajaiban, Anda tidak selalu yakin bagaimana cara mengulanginya atau meningkatkannya.
 
-Vercel deploys directly from your Git repository (GitHub, GitLab, Bitbucket). Make sure your project is pushed to one of these providers.
+Dalam artikel ini, kami akan mengupas SEO, menjelaskan beberapa aspek paling teknis dari prosesnya. SEO tidak harus menjadi beban, dan dengan Next.js di Vercel sebagai fondasi yang kokoh, Anda siap membangun praktik terbaik, dan melihat peningkatan eksponensial dalam prosesnya.
 
-### Step 2: Import Your Project to Vercel
+### Bersaing untuk SEO yang lebih baik dengan Next.js
+Next.js memprioritaskan SEO, menggabungkan berbagai alat dan rekomendasi bagi para pengembang untuk menerapkan pola SEO yang baik dengan mudah. ​​Analitik terintegrasi ke dalam kerangka kerja itu sendiri, sehingga memudahkan pemantauan performa aplikasi Anda. Jika dipadukan dengan Jaringan Edge Vercel , Anda akan mendapatkan statistik performa per-deployment otomatis untuk pengambilan keputusan yang lebih baik.
 
-1.  Sign up for a Vercel account.
-2.  Go to your dashboard and click **"Add New... > Project"**.
-3.  Import the Git repository containing your Next.js project.
+Berikut beberapa praktik terbaik SEO dan bagaimana Anda dapat menggunakan alat Next.js untuk mencapainya.
 
-### Step 3: Configure and Deploy
+### Rendering dan mengapa itu penting
+Alih-alih menelusuri situs web dengan mengeklik, mesin pencari merayapi kode sumber sesuai urutan penulisannya, mengantrekan tautan untuk diindeks berikutnya. Sementara itu, JavaScript sisi klien dikirim ke antrean render dan membutuhkan waktu lebih lama (dan daya komputasi yang lebih besar) untuk diindeks.
 
-Vercel will automatically detect that you're deploying a Next.js app and configure the build settings for you. You can typically leave these as they are.
+Ini berarti melakukan pra-rendering situs Anda secara statis atau di server adalah praktik terbaik untuk SEO, karena membuat perayap bersedia mengindeks ulang situs Anda lebih sering. Namun, metode pra-rendering juga memiliki kekurangan, karena Pembuatan Situs Statis (SSG) seringkali dapat memperlambat waktu pembuatan, dan Rendering Sisi Server (SSR) tanpa caching yang tepat dapat menyebabkan kinerja pemuatan halaman awal yang lambat sekaligus menghalangi proses rendering untuk pengambilan data Anda.
 
-Click **"Deploy"**.
+Untuk menggabungkan keunggulan SSR dan SSG, Next.js menawarkan Regenerasi Statis Inkremental (ISR) , yang melakukan pra-render semua halaman Anda seperti SSG, tetapi juga memungkinkan Anda memperbarui halaman tertentu sesuai kebutuhan, tanpa perlu men-deploy ulang aplikasi. Anda mendapatkan konten dinamis dengan kecepatan—dan kemampuan indeks perayap—konten statis.
 
-That's it! Vercel will build and deploy your application, providing you with a live URL once it's done.
+### Kecepatan di semua platform
+ISR dengan Next.js bukan hanya berarti halaman Anda dapat dirayapi dengan lebih mudah. ​​Ini juga berarti halaman Anda akan dimuat hampir seketika oleh pengguna. Dan dalam SEO, kecepatan memengaruhi segalanya:
+
+- **Pengalaman pengguna.** Situs web yang lebih cepat membuat pengguna tetap terlibat dengan konten lebih lama, sehingga menghasilkan rasio konversi yang lebih tinggi.
+- **Peringkat mesin pencari.** Google menganggap kecepatan situs sebagai faktor peringkat yang kuat dalam algoritma mereka.
+- **Optimasi seluler.** Sebagian besar pengguna menemukan situs web baru di perangkat seluler, dan Google merayapi situs web di peramban seluler secara default.
+
+Jadi, selain strategi renderingnya, bagaimana Next.js dapat membantu?
+
+- **Optimasi gambar.** Next.js memiliki komponen \`next/image\` plug-and-play yang memformat gambar secara tepat berdasarkan perangkat pengguna.
+- **Pemecahan kode dengan impor dinamis.** Anda dapat memilih untuk menunda skrip hingga ke tingkat komponen, hanya menyajikan kode yang benar-benar akan digunakan.
+- **Optimasi font.** Next.js memiliki Optimasi Webfont Otomatis bawaan, yang menghilangkan pengambilan data yang tidak perlu.
+- **Kembangkan sekali, terapkan di mana saja.** Basis kode Anda di Next.js akan berjalan cepat di semua perangkat desktop dan seluler.
+
+### Strategi konten
+Judul memang penting. Namun, subjudul, daftar, tabel, dan elemen lain yang secara visual membagi teks Anda bagi pengguna juga penting. Perayap mesin pencari menggunakan jenis informasi yang sama untuk mendapatkan konteks. Selain itu, manfaatkan data terstruktur dengan mengikuti rekomendasi Skema untuk hal-hal seperti acara, produk, dan ulasan.
+
+### Merekayasa jalan Anda menuju kesuksesan
+Dengan memiliki visi yang jelas tentang struktur aplikasi Anda, Anda dapat mencerminkan visi tersebut di Next.js dengan cara yang tidak hanya meningkatkan SEO, tetapi juga meningkatkan alur pengguna.
+
+#### Metadata Dinamis
+Komponen HTML \`<head>\` menawarkan peluang SEO yang unik. Anda dapat menambahkan sejumlah besar informasi tentang halaman Anda. Next.js menawarkan \`next/head\` yang dinamis yang memungkinkan Anda memisahkan logika output \`<head>\` ke dalam komponen. Dengan App Router, Anda dapat membawa metadata Anda selangkah lebih maju, dengan membuatnya secara dinamis di tingkat komponen.
+
+#### Navigasi yang lebih cerdas
+Perayap mesin pencari memetakan situs Anda berdasarkan halaman mana yang tertaut ke halaman mana.
+- **App Router.** Direktori \`app\` Next.js 13 menawarkan cara intuitif untuk menyusun situs web Anda.
+- **Tata Letak.** Anda dapat menggunakan tata letak untuk membuat templat halaman untuk situs Anda.
+- **Perutean dinamis.** URL yang masuk akal dan terindeks juga berperan penting dalam SEO.
+- **Komponen Link.** Next.js menggunakan komponen React \`<Link>\` untuk menyediakan prefetching dan kemampuan untuk menautkan ke rute dinamis.
+
+#### Memperbaiki jalan buntu
+Menerapkan navigasi yang lebih cerdas di seluruh situs juga dapat membantu Anda menemukan tautan rusak dan halaman yang tidak terpakai.
+
+#### Peringkat regional
+Internasionalisasi (i18n) dan lokalisasi memungkinkan situs Anda naik peringkat mesin pencari di seluruh dunia. Next.js menyediakan serangkaian fitur untuk membantu mengoptimalkan situs Anda di wilayah mana pun.
     `,
   },
   {

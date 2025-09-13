@@ -7,9 +7,18 @@ import { Code, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './theme-toggle';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const getHref = (href: string) => {
+    if (href.startsWith('#')) {
+      return pathname === '/' ? href : `/${href}`;
+    }
+    return href;
+  };
 
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
@@ -20,11 +29,11 @@ export function Header() {
         </Link>
         <nav className="hidden md:flex items-center space-x-2">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link key={link.href} href={getHref(link.href)}>
               <Button variant="ghost">{link.label}</Button>
             </Link>
           ))}
-           <Link href="#contact">
+           <Link href={getHref("#contact")}>
              <Button>Hire Me</Button>
            </Link>
           <ThemeToggle />
@@ -50,11 +59,11 @@ export function Header() {
       >
         <nav className="flex flex-col items-center p-4 space-y-2">
           {navLinks.map((link) => (
-             <Link key={link.href} href={link.href} className="w-full" onClick={() => setIsMenuOpen(false)}>
+             <Link key={link.href} href={getHref(link.href)} className="w-full" onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full">{link.label}</Button>
              </Link>
           ))}
-          <Link href="#contact" className="w-full" onClick={() => setIsMenuOpen(false)}>
+          <Link href={getHref("#contact")} className="w-full" onClick={() => setIsMenuOpen(false)}>
             <Button className="w-full">
                 Hire Me
             </Button>

@@ -6,7 +6,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import React from 'react';
 
 const title = "Fresh Graduate";
-const subtitle1 = "Cloud Engineer";
+const subtitle1 = "Software Engineer";
 const subtitle2 = "&";
 const subtitle3 = "DevOps Enthusiast";
 

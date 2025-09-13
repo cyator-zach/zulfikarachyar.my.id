@@ -74,11 +74,11 @@ export default function TutorialsPage() {
           <ScrollAnimationWrapper>
             <div className="max-w-2xl mx-auto mb-8">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
                 <Input
                   type="search"
                   placeholder="Search tutorials..."
-                  className="pl-10 w-full"
+                  className="pl-12 w-full h-14 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg focus-visible:ring-primary focus-visible:ring-2"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />

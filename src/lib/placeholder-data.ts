@@ -27,7 +27,7 @@ export const portfolioItems = [
     id: 'proj1',
     title: 'Automated Cloud Infra',
     description: 'A Bangkit course project building a CI/CD pipeline for deploying a web app to AWS.',
-    imageUrl: '/images/portfolio/proj1.jpg',
+    imageUrl: 'https://picsum.photos/seed/1/600/400',
     imageHint: 'cloud infrastructure',
     tags: ['AWS', 'CI/CD', 'Terraform', 'Docker'],
     liveUrl: '#',
@@ -216,7 +216,7 @@ Perayap mesin pencari memetakan situs Anda berdasarkan halaman mana yang tertaut
 - **App Router.** Direktori \`app\` Next.js 13 menawarkan cara intuitif untuk menyusun situs web Anda.
 - **Tata Letak.** Anda dapat menggunakan tata letak untuk membuat templat halaman untuk situs Anda.
 - **Perutean dinamis.** URL yang masuk akal dan terindeks juga berperan penting dalam SEO.
-- **Komponen Link.** Next.js menggunakan komponen React \`<Link>\` untuk menyediakan prefetching dan kemampuan untuk menautkan ke rute dinamis.
+- **Komponen Link.** Next.js menggunakan komponen React \`<Link>\` untuk menyediakan prefetching dan kemampuan untuk menautkan ke rute dinamis dari satu tempat terpusat di basis kode.
 
 #### Memperbaiki jalan buntu
 Menerapkan navigasi yang lebih cerdas di seluruh situs juga dapat membantu Anda menemukan tautan rusak dan halaman yang tidak terpakai.

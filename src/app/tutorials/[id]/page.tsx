@@ -5,11 +5,14 @@ import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, CalendarDays } from 'lucide-react';
+import { ArrowLeft, CalendarDays, ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { format } from 'date-fns';
 import { ContactSection } from '@/components/sections/contact';
+import { Section } from '@/components/section';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ScrollAnimationWrapper } from '@/components/scroll-animation';
 
 type Props = {
   params: { id: string };
@@ -29,6 +32,62 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: tutorial.description,
   };
 }
+
+function MoreTutorialsSection({ currentTutorialId }: { currentTutorialId: string }) {
+  const recentTutorials = tutorialItems
+    .filter(item => item.id !== currentTutorialId)
+    .slice(0, 3);
+
+  if (recentTutorials.length === 0) {
+    return null;
+  }
+
+  return (
+    <Section id="more-tutorials" className="bg-secondary dark:bg-gradient-to-b dark:from-slate-900 dark:to-black">
+       <ScrollAnimationWrapper animation='slide-up'>
+        <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold font-headline text-foreground dark:text-white">
+                More <span className="text-primary">Tutorials</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
+                Explore other articles and guides I've written.
+            </p>
+        </div>
+      </ScrollAnimationWrapper>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {recentTutorials.map((item, index) => (
+            <ScrollAnimationWrapper key={item.id} animation="slide-up" delay={index * 100}>
+                <Link href={`/tutorials/${item.id}`} className="block h-full group">
+                <Card className="overflow-hidden transition-all duration-300 flex flex-col shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
+                    <CardHeader className="p-0">
+                    <div className="aspect-video relative overflow-hidden">
+                        <Image
+                        src={item.imageUrl}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        data-ai-hint={item.imageHint}
+                        />
+                    </div>
+                    </CardHeader>
+                    <CardContent className="p-6 flex-grow flex flex-col">
+                    <span className="text-sm font-semibold text-primary mb-2">{item.category}</span>
+                    <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
+                    <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
+                    <div className="p-0 h-auto mt-4 self-start text-primary font-semibold flex items-center">
+                        Read More <ArrowRight className="w-4 h-4 ml-2" />
+                    </div>
+                    </CardContent>
+                </Card>
+                </Link>
+            </ScrollAnimationWrapper>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 
 export default function TutorialDetailPage({ params }: { params: { id: string } }) {
   const tutorial = tutorialItems.find(item => item.id === params.id);
@@ -90,6 +149,7 @@ export default function TutorialDetailPage({ params }: { params: { id: string } 
             </div>
           </article>
         </div>
+         <MoreTutorialsSection currentTutorialId={tutorial.id} />
       </main>
       <ContactSection />
       <footer className="py-8 bg-slate-900">

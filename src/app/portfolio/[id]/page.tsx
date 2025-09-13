@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, CalendarDays } from 'lucide-react';
 import type { Metadata } from 'next';
 import { ContactSection } from '@/components/sections/contact';
 import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { format } from 'date-fns';
 
 type Props = {
   params: { id: string };
@@ -42,12 +44,30 @@ export default function PortfolioDetailPage({ params }: { params: { id:string } 
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <Link href="/#portfolio">
-                <Button variant="ghost" className="mb-8">
+                <Button variant="ghost" className="mb-4">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Portfolio
                 </Button>
             </Link>
             <article>
+                <div className="mb-8">
+                    <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{project.title}</h1>
+                    <div className="flex items-center space-x-4 text-muted-foreground">
+                        <div className="flex items-center space-x-2">
+                        <Avatar className="h-8 w-8">
+                            <AvatarImage src={project.authorImageUrl} alt={project.author} />
+                            <AvatarFallback>{project.author.substring(0, 2)}</AvatarFallback>
+                        </Avatar>
+                        <span className="font-medium text-foreground">{project.author}</span>
+                        </div>
+                        <span className="hidden md:block">|</span>
+                        <div className="flex items-center space-x-2">
+                        <CalendarDays className="h-5 w-5" />
+                        <span>{format(new Date(project.date), 'MMMM dd, yyyy')}</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="relative aspect-video w-full rounded-lg overflow-hidden mb-8 shadow-lg">
                     <Image
                         src={project.imageUrl}
@@ -62,7 +82,6 @@ export default function PortfolioDetailPage({ params }: { params: { id:string } 
 
                 <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
                     <div className="lg:col-span-2">
-                        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{project.title}</h1>
                         <div className="prose prose-lg dark:prose-invert max-w-none mx-auto">
                             <h2 className="text-2xl font-semibold mt-8">The Challenge</h2>
                             <p>{project.challenge}</p>

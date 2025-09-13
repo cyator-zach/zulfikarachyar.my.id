@@ -17,6 +17,11 @@ export const skills: { name: string; icon: LucideIcon }[] = [
   { name: 'Networking', icon: Network },
 ];
 
+const authorDetails = {
+    name: 'Zulfikar Achyar',
+    imageUrl: 'https://picsum.photos/seed/4/100/100',
+};
+
 export const portfolioItems = [
   {
     id: 'proj1',
@@ -30,6 +35,9 @@ export const portfolioItems = [
     challenge: 'The main challenge was to automate the entire deployment lifecycle, from code commit to a live, scalable environment in the cloud, while ensuring security and reliability.',
     solution: 'We designed a complete CI/CD pipeline using GitHub Actions. Terraform was used for Infrastructure as Code (IaC) to provision resources on AWS, including VPC, EC2 instances, and load balancers. The application was containerized using Docker for consistent environments.',
     results: 'Achieved a fully automated deployment process, reducing manual intervention by 90%. Improved deployment frequency and stability, allowing for faster iteration and feedback cycles.',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-28',
   },
   {
     id: 'proj2',
@@ -43,6 +51,9 @@ export const portfolioItems = [
     challenge: 'The goal was to create a web application that could ingest CSV data, process it, and present it in an interactive and easily understandable dashboard for non-technical users.',
     solution: 'A web app was built using Flask as the backend to handle data uploads and processing with the Pandas library. The frontend used Chart.js to render interactive charts and graphs, providing a dynamic user experience for data exploration.',
     results: 'Successfully created a tool that allows users to upload their own datasets and instantly gain visual insights, making data analysis more accessible.',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-25',
   },
   {
     id: 'proj3',
@@ -56,6 +67,9 @@ export const portfolioItems = [
     challenge: 'To break down a monolithic application into a set of independently deployable microservices and manage them effectively for scalability and resilience.',
     solution: 'The application was refactored into several microservices, each containerized with Docker. Kubernetes on Google Kubernetes Engine (GKE) was used to orchestrate the containers, managing service discovery, load balancing, and automated scaling.',
     results: 'Improved modularity and scalability of the application. Enabled independent updates for each service, leading to a more agile development workflow.',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-22',
   },
 ];
 
@@ -82,11 +96,6 @@ export const experiences = [
       'Assisted in managing and maintaining the campus network infrastructure, including configuration and troubleshooting of network devices.',
   },
 ];
-
-const authorDetails = {
-    name: 'Zulfikar Achyar',
-    imageUrl: 'https://picsum.photos/seed/4/100/100',
-};
 
 export const tutorialItems = [
   {

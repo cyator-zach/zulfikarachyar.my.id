@@ -10,15 +10,30 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ScrollAnimationWrapper } from "@/components/scroll-animation";
 import { ContactSection } from "@/components/sections/contact";
+import { cn } from "@/lib/utils";
 
 const ITEMS_PER_PAGE = 6;
 
+const categories = ["All", ...Array.from(new Set(tutorialItems.map(item => item.category)))];
+
 export default function TutorialsPage() {
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [selectedCategory, setSelectedCategory] = React.useState("All");
 
-  const totalPages = Math.ceil(tutorialItems.length / ITEMS_PER_PAGE);
+  const filteredItems = React.useMemo(() => {
+    const items = selectedCategory === "All"
+      ? tutorialItems
+      : tutorialItems.filter(item => item.category === selectedCategory);
+    return items;
+  }, [selectedCategory]);
+
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
+  
+  const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = tutorialItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const currentItems = filteredItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -40,36 +55,58 @@ export default function TutorialsPage() {
               </p>
             </div>
           </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper>
+            <div className="flex justify-center flex-wrap gap-2 mb-12">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  onClick={() => setSelectedCategory(category)}
+                  className="rounded-full"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </ScrollAnimationWrapper>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentItems.map((item, index) => (
-              <ScrollAnimationWrapper key={item.id} animation="slide-up" delay={index * 100}>
-                <Link href={`/tutorials/${item.id}`} className="block h-full group">
-                  <Card className="overflow-hidden transition-all duration-300 flex flex-col shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
-                    <CardHeader className="p-0">
-                      <div className="aspect-video relative overflow-hidden">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          data-ai-hint={item.imageHint}
-                        />
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-6 flex-grow flex flex-col">
-                      <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
-                      <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
-                      <div className="p-0 h-auto mt-4 self-start text-primary font-semibold flex items-center">
-                          Read More <ArrowRight className="w-4 h-4 ml-2" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </ScrollAnimationWrapper>
-            ))}
-          </div>
+          {currentItems.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentItems.map((item, index) => (
+                <ScrollAnimationWrapper key={item.id} animation="slide-up" delay={index * 100}>
+                  <Link href={`/tutorials/${item.id}`} className="block h-full group">
+                    <Card className="overflow-hidden transition-all duration-300 flex flex-col shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
+                      <CardHeader className="p-0">
+                        <div className="aspect-video relative overflow-hidden">
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            data-ai-hint={item.imageHint}
+                          />
+                        </div>
+                      </CardHeader>
+                      <CardContent className="p-6 flex-grow flex flex-col">
+                        <span className="text-sm font-semibold text-primary mb-2">{item.category}</span>
+                        <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
+                        <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
+                        <div className="p-0 h-auto mt-4 self-start text-primary font-semibold flex items-center">
+                            Read More <ArrowRight className="w-4 h-4 ml-2" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </ScrollAnimationWrapper>
+              ))}
+            </div>
+          ) : (
+             <div className="text-center py-16">
+              <p className="text-muted-foreground text-lg">No tutorials found in this category.</p>
+            </div>
+          )}
           
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-4 mt-16">

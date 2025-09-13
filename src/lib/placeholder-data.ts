@@ -107,6 +107,7 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-07-20',
+    category: 'Docker',
   },
   {
     id: 'tut2',
@@ -117,6 +118,7 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-07-15',
+    category: 'Next.js',
   },
   {
     id: 'tut3',
@@ -127,8 +129,9 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-07-10',
+    category: 'CI/CD',
   },
-    {
+  {
     id: 'tut4',
     title: 'Introduction to Kubernetes',
     description: 'Grasp the basic concepts of Kubernetes and run your first pod.',
@@ -137,6 +140,7 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-07-05',
+    category: 'Kubernetes',
   },
   {
     id: 'tut5',
@@ -147,6 +151,7 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-06-28',
+    category: 'Tailwind CSS',
   },
   {
     id: 'tut6',
@@ -157,8 +162,9 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-06-22',
+    category: 'Node.js',
   },
-   {
+  {
     id: 'tut7',
     title: 'Managing State in React with Zustand',
     description: 'A minimalist state management solution for your React applications.',
@@ -167,6 +173,7 @@ export const tutorialItems = [
     author: authorDetails.name,
     authorImageUrl: authorDetails.imageUrl,
     date: '2024-06-18',
+    category: 'React',
   },
 ];
 

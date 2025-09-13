@@ -60,16 +60,19 @@ export default function TutorialsPage() {
       <Header />
       <main className="flex-grow pt-24 md:pt-32">
         <div className="container mx-auto px-4">
-          <ScrollAnimationWrapper>
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Tutorials & Articles
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A collection of articles and tutorials I've written about software development, cloud, and more.
-              </p>
-            </div>
-          </ScrollAnimationWrapper>
+          <div className="relative">
+            <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[300px] w-full bg-animated-blur -z-10" />
+            <ScrollAnimationWrapper>
+              <div className="text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                  Tutorials & Articles
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  A collection of articles and tutorials I've written about software development, cloud, and more.
+                </p>
+              </div>
+            </ScrollAnimationWrapper>
+          </div>
           
           <ScrollAnimationWrapper>
             <div className="max-w-2xl mx-auto mb-8">

@@ -11,7 +11,7 @@ export function ExperienceSection() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground">
-                My <span className="gradient-text">Experience</span>
+                My <span className="text-primary">Experience</span>
             </h2>
             <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
                 A summary of my professional journey and key accomplishments so far.

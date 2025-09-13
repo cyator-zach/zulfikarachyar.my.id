@@ -6,7 +6,7 @@ import { contactLinks, email } from '@/lib/placeholder-data';
 
 export function ContactSection() {
   return (
-    <Section id="contact" className="bg-gradient-to-br from-blue-950 via-slate-900 to-black text-white">
+    <Section id="contact" className="bg-gradient-to-br from-blue-950 via-slate-900 to-black text-white mt-24">
       <div className="grid md:grid-cols-2 gap-12">
         <div>
            <h2 className="text-3xl font-bold font-headline">

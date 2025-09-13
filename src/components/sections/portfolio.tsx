@@ -111,7 +111,7 @@ export function PortfolioSection() {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
-          <div className="py-4 text-center text-sm text-muted-foreground flex justify-center gap-2">
+          <div className="mt-4 py-4 text-center text-sm text-muted-foreground flex justify-center gap-2">
             {Array.from({ length: count }).map((_, index) => (
               <button
                 key={index}

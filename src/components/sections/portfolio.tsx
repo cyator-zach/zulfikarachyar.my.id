@@ -28,10 +28,10 @@ export function PortfolioSection() {
     }
 
     setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
+    setCurrent(api.selectedScrollSnap())
 
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1)
+      setCurrent(api.selectedScrollSnap())
     })
   }, [api])
 
@@ -102,7 +102,7 @@ export function PortfolioSection() {
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index + 1 === current ? 'w-8 bg-primary' : 'w-2 bg-foreground/50 dark:bg-white/50'
+                  index === current ? 'w-8 bg-primary' : 'w-2 bg-foreground/50 dark:bg-white/50'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

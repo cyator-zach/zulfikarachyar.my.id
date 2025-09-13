@@ -45,7 +45,7 @@ export function PortfolioSection() {
         <ScrollAnimationWrapper animation='slide-up' delay={0}>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold font-headline text-foreground dark:text-white">
-              My Recent <span className="gradient-text">Work</span>
+              My Recent <span className="text-primary">Work</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
               Here are a few projects I've worked on recently. Want to see more? <a href={`mailto:zulfikarachyar@gmail.com`} className="text-primary font-medium hover:underline">Email me</a>.

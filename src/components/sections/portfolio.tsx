@@ -40,14 +40,14 @@ export function PortfolioSection() {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-slate-900 to-black">
-      <Section id="portfolio" className="bg-transparent text-white relative">
+    <div className="relative bg-secondary dark:bg-gradient-to-b dark:from-slate-900 dark:to-black">
+      <Section id="portfolio" className="bg-transparent relative">
         <ScrollAnimationWrapper animation='slide-up' delay={0}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold font-headline text-white">
+            <h2 className="text-3xl font-bold font-headline text-foreground dark:text-white">
               My Recent <span className="gradient-text">Work</span>
             </h2>
-            <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
               Here are a few projects I've worked on recently. Want to see more? <a href={`mailto:zulfikarachyar@gmail.com`} className="text-primary font-medium hover:underline">Email me</a>.
             </p>
           </div>
@@ -66,7 +66,7 @@ export function PortfolioSection() {
               {portfolioItems.map((item) => (
                 <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
-                      <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-slate-900/50 border-white/20 h-full">
+                      <Card className="overflow-hidden transition-all duration-300 flex flex-col group shadow-lg hover:shadow-2xl bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
                         <CardHeader className="p-0">
                           <div className="aspect-video relative overflow-hidden">
                             <Image
@@ -80,8 +80,8 @@ export function PortfolioSection() {
                           </div>
                         </CardHeader>
                         <CardContent className="p-6 flex-grow flex flex-col">
-                          <CardTitle className="text-white text-xl font-bold">{item.title}</CardTitle>
-                          <CardDescription className="mt-2 text-slate-300 flex-grow">{item.description}</CardDescription>
+                          <CardTitle className="text-card-foreground dark:text-white text-xl font-bold">{item.title}</CardTitle>
+                          <CardDescription className="mt-2 text-muted-foreground dark:text-slate-300 flex-grow">{item.description}</CardDescription>
                           <Button variant="link" asChild className="p-0 h-auto mt-4 self-start text-primary font-semibold">
                             <a href="#">
                               Case Study <ArrowRight className="w-4 h-4 ml-2" />
@@ -102,7 +102,7 @@ export function PortfolioSection() {
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index + 1 === current ? 'w-8 bg-primary' : 'w-2 bg-white/50'
+                  index + 1 === current ? 'w-8 bg-primary' : 'w-2 bg-foreground/50 dark:bg-white/50'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

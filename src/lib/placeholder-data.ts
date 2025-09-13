@@ -75,25 +75,11 @@ export const portfolioItems = [
 
 export const experiences = [
   {
-    company: 'Bangkit Academy',
-    position: 'Cloud Computing Cohort',
-    duration: 'Feb 2024 - Jul 2024',
-    description:
-      'Completed an intensive program focusing on cloud technologies, including Google Cloud Platform and AWS, with a capstone project on scalable cloud solutions.',
-  },
-  {
-    company: 'PT. Telkom Indonesia',
-    position: 'IT Support (Internship)',
-    duration: 'Jun 2023 - Aug 2023',
-    description:
-      'Provided technical assistance and troubleshooting for hardware, software, and network issues. Gained experience in a corporate IT environment.',
-  },
-  {
-    company: 'UPT. TIK Universitas Syiah Kuala',
+    company: 'Diskominfo Kabupaten Langkat',
     position: 'Network Technician (Internship)',
     duration: 'Jun 2022 - Aug 2022',
     description:
-      'Assisted in managing and maintaining the campus network infrastructure, including configuration and troubleshooting of network devices.',
+      'Assisted in managing and maintaining the network infrastructure, including configuration and troubleshooting of network devices.',
   },
 ];
 

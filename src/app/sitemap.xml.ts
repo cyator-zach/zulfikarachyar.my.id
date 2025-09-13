@@ -5,20 +5,7 @@ import { portfolioItems, tutorialItems } from '@/lib/placeholder-data';
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = 'https://zulfikarachyar.my.id';
 
-  const portfolioUrls = portfolioItems.map(item => ({
-    url: `${siteUrl}/portfolio/${item.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
-
-  const tutorialUrls = tutorialItems.map(item => ({
-    url: `${siteUrl}/tutorials/${item.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
-
+  // URLs for static pages
   const staticUrls = [
     {
       url: siteUrl,
@@ -39,6 +26,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
   ];
+
+  // URLs for portfolio items
+  const portfolioUrls = portfolioItems.map(item => ({
+    url: `${siteUrl}/portfolio/${item.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  // URLs for tutorial items
+  const tutorialUrls = tutorialItems.map(item => ({
+    url: `${siteUrl}/tutorials/${item.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
 
   return [...staticUrls, ...portfolioUrls, ...tutorialUrls];
 }

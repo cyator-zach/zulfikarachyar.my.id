@@ -1,11 +1,14 @@
+
 import { tutorialItems } from '@/lib/placeholder-data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, CalendarDays } from 'lucide-react';
 import type { Metadata } from 'next';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { format } from 'date-fns';
 
 type Props = {
   params: { id: string };
@@ -47,6 +50,20 @@ export default function TutorialDetailPage({ params }: { params: { id: string } 
                 </Button>
               </Link>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{tutorial.title}</h1>
+              <div className="flex items-center space-x-4 text-muted-foreground">
+                <div className="flex items-center space-x-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={tutorial.authorImageUrl} alt={tutorial.author} />
+                    <AvatarFallback>{tutorial.author.substring(0, 2)}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-medium text-foreground">{tutorial.author}</span>
+                </div>
+                <span className="hidden md:block">|</span>
+                <div className="flex items-center space-x-2">
+                  <CalendarDays className="h-5 w-5" />
+                  <span>{format(new Date(tutorial.date), 'MMMM dd, yyyy')}</span>
+                </div>
+              </div>
             </div>
 
             <div className="relative aspect-video w-full rounded-lg overflow-hidden mb-8 shadow-lg">

@@ -1,3 +1,4 @@
+
 import { Cloud, Code, Server, Network, ShieldCheck, Linkedin, Github, Instagram } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -65,6 +66,11 @@ export const experiences = [
   },
 ];
 
+const authorDetails = {
+    name: 'Zulfikar Achyar',
+    imageUrl: 'https://picsum.photos/seed/4/100/100',
+};
+
 export const tutorialItems = [
   {
     id: 'tut1',
@@ -72,6 +78,9 @@ export const tutorialItems = [
     description: 'A beginner-friendly guide to containerizing your first application.',
     imageUrl: 'https://picsum.photos/seed/10/600/400',
     imageHint: 'docker logo',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-20',
   },
   {
     id: 'tut2',
@@ -79,6 +88,9 @@ export const tutorialItems = [
     description: 'Step-by-step tutorial on deploying your Next.js project seamlessly.',
     imageUrl: 'https://picsum.photos/seed/11/600/400',
     imageHint: 'serverless deployment',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-15',
   },
   {
     id: 'tut3',
@@ -86,6 +98,9 @@ export const tutorialItems = [
     description: 'Learn how to automate your build, test, and deployment workflows.',
     imageUrl: 'https://picsum.photos/seed/12/600/400',
     imageHint: 'automation pipeline',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-10',
   },
     {
     id: 'tut4',
@@ -93,6 +108,9 @@ export const tutorialItems = [
     description: 'Grasp the basic concepts of Kubernetes and run your first pod.',
     imageUrl: 'https://picsum.photos/seed/13/600/400',
     imageHint: 'kubernetes cluster',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-07-05',
   },
   {
     id: 'tut5',
@@ -100,6 +118,9 @@ export const tutorialItems = [
     description: 'A guide to setting up and using the utility-first CSS framework in your project.',
     imageUrl: 'https://picsum.photos/seed/14/600/400',
     imageHint: 'css code',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-06-28',
   },
   {
     id: 'tut6',
@@ -107,6 +128,9 @@ export const tutorialItems = [
     description: 'Create a simple but powerful REST API from scratch.',
     imageUrl: 'https://picsum.photos/seed/15/600/400',
     imageHint: 'api development',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-06-22',
   },
    {
     id: 'tut7',
@@ -114,6 +138,9 @@ export const tutorialItems = [
     description: 'A minimalist state management solution for your React applications.',
     imageUrl: 'https://picsum.photos/seed/16/600/400',
     imageHint: 'react components',
+    author: authorDetails.name,
+    authorImageUrl: authorDetails.imageUrl,
+    date: '2024-06-18',
   },
 ];
 

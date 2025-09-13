@@ -40,22 +40,7 @@ export function PortfolioSection() {
   };
 
   return (
-    <div className="relative">
-      <Image
-        src="https://picsum.photos/seed/trees/1920/1080"
-        alt="Blurred nature background with trees"
-        fill
-        className="object-cover blur-sm"
-        data-ai-hint="nature trees"
-      />
-      <div 
-        className="absolute inset-0 bg-black/50"
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-background/30 to-transparent pointer-events-none"
-        aria-hidden="true"
-      />
+    <div className="relative bg-gradient-to-b from-slate-900 to-black">
       <Section id="portfolio" className="bg-transparent text-white relative">
         <ScrollAnimationWrapper animation='slide-up' delay={0}>
           <div className="text-center mb-12">
@@ -111,7 +96,7 @@ export function PortfolioSection() {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
-          <div className="mt-4 py-4 text-center text-sm text-muted-foreground flex justify-center gap-2">
+          <div className="py-4 text-center text-sm text-muted-foreground flex justify-center gap-2 mt-4">
             {Array.from({ length: count }).map((_, index) => (
               <button
                 key={index}

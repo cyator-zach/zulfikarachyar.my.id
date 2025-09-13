@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Code, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './theme-toggle';
+import Link from 'next/link';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,10 +14,10 @@ export function Header() {
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
       <div className="container mx-auto px-4 flex items-center justify-between h-16 bg-background/30 backdrop-blur-xl border border-white/20 rounded-xl shadow-lg">
-        <a href="#home" className="flex items-center gap-2 font-bold text-lg">
+        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
           <Code className="w-6 h-6 text-primary" />
           <span className="animated-gradient-text">Zulfikar Achyar</span>
-        </a>
+        </Link>
         <nav className="hidden md:flex items-center space-x-2">
           {navLinks.map((link) => (
             <Button key={link.href} variant="ghost" asChild>

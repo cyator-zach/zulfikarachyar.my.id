@@ -77,7 +77,7 @@ export const experiences = [
   {
     company: 'Diskominfo Kabupaten Langkat',
     position: 'Network Technician (Internship)',
-    duration: 'Jun 2022 - Aug 2022',
+    duration: 'Feb 2024 - Mei 2024',
     description:
       'Assisted in managing and maintaining the network infrastructure, including configuration and troubleshooting of network devices.',
   },

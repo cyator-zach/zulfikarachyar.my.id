@@ -21,12 +21,12 @@ export function ExperienceSection() {
         <div className="space-y-8">
           {experiences.map((exp, index) => (
             <Card key={index} className="bg-background/70 backdrop-blur-sm border shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/30">
-              <CardHeader className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 items-start pb-4">
+              <CardHeader className="flex flex-row justify-between items-start gap-4 pb-4">
                 <div>
                   <CardTitle className="text-xl font-bold">{exp.position}</CardTitle>
                   <p className="font-semibold text-primary mt-1">{exp.company}</p>
                 </div>
-                <Badge variant="secondary" className="justify-self-start md:justify-self-end mt-2 md:mt-0">{exp.duration}</Badge>
+                <Badge variant="secondary" className="text-nowrap">{exp.duration}</Badge>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">{exp.description}</p>

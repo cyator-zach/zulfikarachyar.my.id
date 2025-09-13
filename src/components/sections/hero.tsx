@@ -8,7 +8,7 @@ import React from 'react';
 const title = "Fresh Graduate";
 const subtitle1 = "Software Engineer";
 const subtitle2 = "&";
-const subtitle3 = "DevOps Enthusiast";
+const subtitle3 = "Full Stack Developer";
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -100,7 +100,7 @@ export function HeroSection() {
             </motion.h1>
             
             <p className="mt-6 max-w-xl text-muted-foreground mx-auto text-lg">
-              A passionate Computer Engineering graduate ready to build and optimize the software infrastructure of the future.
+              A passionate Computer Engineering graduate ready to build and optimize the software of the future.
             </p>
             <div className="mt-8 flex gap-4 justify-center">
               <Button asChild size="lg">

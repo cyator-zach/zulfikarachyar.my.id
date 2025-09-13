@@ -5,9 +5,9 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { email, contactLinks } from '@/lib/placeholder-data';
 
 export const metadata: Metadata = {
-  title: 'Zulfikar Achyar | Cloud & DevOps Enthusiast',
-  description: 'Personal portfolio website of Zulfikar Achyar, a fresh graduate Computer Engineering with a passion for Cloud Computing and DevOps. Explore my projects and experience.',
-  keywords: ['Zulfikar Achyar', 'Cloud Engineer', 'DevOps', 'Portfolio', 'Fresh Graduate', 'Computer Engineering'],
+  title: 'Zulfikar Achyar | Software Engineer',
+  description: 'Personal portfolio website of Zulfikar Achyar, a fresh graduate Computer Engineering with a passion for software development. Explore my projects and experience.',
+  keywords: ['Zulfikar Achyar', 'Software Engineer', 'Full Stack Developer', 'Portfolio', 'Fresh Graduate', 'Computer Engineering'],
   authors: [{ name: 'Zulfikar Achyar', url: contactLinks.find(l => l.name === 'LinkedIn')?.url }],
   creator: 'Zulfikar Achyar',
 };
@@ -18,7 +18,7 @@ const jsonLd = {
   name: 'Zulfikar Achyar',
   alternateName: 'Zulfikar Achyar',
   url: 'https://zulfikar-achyar.web.app', // Ganti dengan URL domain Anda nanti
-  jobTitle: 'Cloud Engineer and DevOps Enthusiast',
+  jobTitle: 'Software Engineer',
   worksFor: {
     '@type': 'Organization',
     name: 'Self-employed'

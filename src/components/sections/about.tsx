@@ -8,7 +8,7 @@ export function AboutSection() {
           Hi, <span className="gradient-text">I'm Zulfikar</span>. Nice to meet you.
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          Since beginning my journey as a student in computer engineering, I've been captivated by the power of cloud computing and automation. I'm passionate about building scalable, efficient, and reliable infrastructure. I'm actively seeking opportunities to contribute to exciting projects and grow as a cloud professional.
+          Since beginning my journey as a student in computer engineering, I've been captivated by the power of software development and automation. I'm passionate about building scalable, efficient, and reliable software solutions. I'm actively seeking opportunities to contribute to exciting projects and grow as a software professional.
         </p>
       </div>
     </Section>

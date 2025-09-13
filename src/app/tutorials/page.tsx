@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -7,10 +8,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { ScrollAnimationWrapper } from "@/components/scroll-animation";
 import { ContactSection } from "@/components/sections/contact";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -19,17 +21,30 @@ const categories = ["All", ...Array.from(new Set(tutorialItems.map(item => item.
 export default function TutorialsPage() {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [selectedCategory, setSelectedCategory] = React.useState("All");
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   const filteredItems = React.useMemo(() => {
-    const items = selectedCategory === "All"
-      ? tutorialItems
-      : tutorialItems.filter(item => item.category === selectedCategory);
+    let items = tutorialItems;
+
+    // Filter by category
+    if (selectedCategory !== "All") {
+      items = items.filter(item => item.category === selectedCategory);
+    }
+
+    // Filter by search query
+    if (searchQuery) {
+      items = items.filter(item =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
     return items;
-  }, [selectedCategory]);
+  }, [selectedCategory, searchQuery]);
 
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategory]);
+  }, [selectedCategory, searchQuery]);
   
   const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -57,6 +72,19 @@ export default function TutorialsPage() {
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper>
+            <div className="max-w-2xl mx-auto mb-8">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search tutorials..."
+                  className="pl-10 w-full"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+            </div>
+
             <div className="flex justify-center flex-wrap gap-2 mb-12">
               {categories.map((category) => (
                 <Button
@@ -104,7 +132,7 @@ export default function TutorialsPage() {
             </div>
           ) : (
              <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg">No tutorials found in this category.</p>
+              <p className="text-muted-foreground text-lg">No tutorials found for your search.</p>
             </div>
           )}
           

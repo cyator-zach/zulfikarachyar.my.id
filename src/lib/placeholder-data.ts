@@ -27,7 +27,7 @@ export const portfolioItems = [
     id: 'proj1',
     title: 'Automated Cloud Infra',
     description: 'A Bangkit course project building a CI/CD pipeline for deploying a web app to AWS.',
-    imageUrl: 'https://picsum.photos/seed/1/600/400',
+    imageUrl: '/images/portfolio/proj1.jpg',
     imageHint: 'cloud infrastructure',
     tags: ['AWS', 'CI/CD', 'Terraform', 'Docker'],
     liveUrl: '#',

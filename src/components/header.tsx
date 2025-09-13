@@ -20,13 +20,15 @@ export function Header() {
         </Link>
         <nav className="hidden md:flex items-center space-x-2">
           {navLinks.map((link) => (
-            <Button key={link.href} variant="ghost" asChild>
-              <a href={link.href}>{link.label}</a>
-            </Button>
+            <Link key={link.href} href={link.href} passHref legacyBehavior>
+              <Button variant="ghost" as="a">{link.label}</Button>
+            </Link>
           ))}
-           <Button asChild>
-              <a href="#contact">Hire Me</a>
-            </Button>
+           <Link href="#contact" passHref legacyBehavior>
+             <Button asChild>
+                <a>Hire Me</a>
+              </Button>
+           </Link>
           <ThemeToggle />
         </nav>
         <div className="md:hidden flex items-center gap-2">
@@ -50,13 +52,15 @@ export function Header() {
       >
         <nav className="flex flex-col items-center p-4 space-y-2">
           {navLinks.map((link) => (
-            <Button key={link.href} variant="ghost" asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
-              <a href={link.href}>{link.label}</a>
-            </Button>
+             <Link key={link.href} href={link.href} passHref legacyBehavior className="w-full">
+                <Button variant="ghost" as="a" className="w-full" onClick={() => setIsMenuOpen(false)}>{link.label}</Button>
+             </Link>
           ))}
-          <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
-            <a href="#contact">Hire Me</a>
-          </Button>
+          <Link href="#contact" passHref legacyBehavior className="w-full">
+            <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
+                <a>Hire Me</a>
+            </Button>
+          </Link>
         </nav>
       </div>
     </header>

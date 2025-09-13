@@ -17,7 +17,7 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Zulfikar Achyar',
   alternateName: 'Zulfikar Achyar',
-  url: 'https://zulfikar-achyar.web.app', // Ganti dengan URL domain Anda nanti
+  url: 'https://zulfikarachyar.my.id',
   jobTitle: 'Software Engineer',
   worksFor: {
     '@type': 'Organization',

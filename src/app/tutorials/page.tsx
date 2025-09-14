@@ -3,7 +3,6 @@
 
 import * as React from "react";
 import { Header } from "@/components/header";
-import { tutorialItems } from "@/lib/placeholder-data";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -13,25 +12,61 @@ import { ScrollAnimationWrapper } from "@/components/scroll-animation";
 import { ContactSection } from "@/components/sections/contact";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import type { Tutorial } from "@/lib/data-service";
+import { getTutorials } from "@/lib/data-service";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ITEMS_PER_PAGE = 6;
 
-const categories = ["All", ...Array.from(new Set(tutorialItems.map(item => item.category)))];
+function TutorialSkeleton() {
+    return (
+        <Card className="overflow-hidden flex flex-col shadow-lg bg-card dark:bg-slate-900/50 dark:border-white/20 h-full">
+            <CardHeader className="p-0">
+                <div className="aspect-video relative overflow-hidden">
+                    <Skeleton className="h-full w-full" />
+                </div>
+            </CardHeader>
+            <CardContent className="p-6 flex-grow flex flex-col">
+                <Skeleton className="h-4 w-1/4 mb-2" />
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-4 w-full mt-2" />
+                <Skeleton className="h-4 w-full mt-1" />
+                <div className="mt-4 self-start">
+                    <Skeleton className="h-5 w-24" />
+                </div>
+            </CardContent>
+        </Card>
+    );
+}
 
 export default function TutorialsPage() {
+  const [allTutorials, setAllTutorials] = React.useState<Tutorial[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [selectedCategory, setSelectedCategory] = React.useState("All");
   const [searchQuery, setSearchQuery] = React.useState("");
 
-  const filteredItems = React.useMemo(() => {
-    let items = tutorialItems;
+  React.useEffect(() => {
+    async function loadTutorials() {
+      setIsLoading(true);
+      const items = await getTutorials();
+      setAllTutorials(items);
+      setIsLoading(false);
+    }
+    loadTutorials();
+  }, []);
 
-    // Filter by category
+  const categories = React.useMemo(() => {
+    return ["All", ...Array.from(new Set(allTutorials.map(item => item.category)))];
+  }, [allTutorials]);
+
+  const filteredItems = React.useMemo(() => {
+    let items = allTutorials;
+
     if (selectedCategory !== "All") {
       items = items.filter(item => item.category === selectedCategory);
     }
 
-    // Filter by search query
     if (searchQuery) {
       items = items.filter(item =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -40,7 +75,7 @@ export default function TutorialsPage() {
     }
     
     return items;
-  }, [selectedCategory, searchQuery]);
+  }, [allTutorials, selectedCategory, searchQuery]);
 
   React.useEffect(() => {
     setCurrentPage(1);
@@ -102,7 +137,13 @@ export default function TutorialsPage() {
             </div>
           </ScrollAnimationWrapper>
 
-          {currentItems.length > 0 ? (
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {Array.from({ length: 3 }).map((_, index) => (
+                    <TutorialSkeleton key={index} />
+                ))}
+            </div>
+          ) : currentItems.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {currentItems.map((item, index) => (
                 <ScrollAnimationWrapper key={item.id} animation="slide-up" delay={index * 100}>
@@ -111,12 +152,12 @@ export default function TutorialsPage() {
                       <CardHeader className="p-0">
                         <div className="aspect-video relative overflow-hidden">
                           <Image
-                            src={item.imageUrl}
+                            src={item.image_url}
                             alt={item.title}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            data-ai-hint={item.imageHint}
+                            data-ai-hint={item.image_hint}
                           />
                         </div>
                       </CardHeader>
@@ -175,5 +216,3 @@ export default function TutorialsPage() {
     </div>
   );
 }
-
-    

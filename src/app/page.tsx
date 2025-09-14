@@ -1,3 +1,4 @@
+
 import { HeroSection } from '@/components/sections/hero';
 import { AboutSection } from '@/components/sections/about';
 import { PortfolioSection } from '@/components/sections/portfolio';
@@ -6,8 +7,12 @@ import { ContactSection } from '@/components/sections/contact';
 import { Header } from '@/components/header';
 import { ScrollAnimationWrapper } from '@/components/scroll-animation';
 import Link from 'next/link';
+import { getPortfolioItems, getExperiences } from '@/lib/data-service';
 
-export default function Home() {
+export default async function Home() {
+  const portfolioItems = await getPortfolioItems();
+  const experiences = await getExperiences();
+
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
@@ -18,9 +23,9 @@ export default function Home() {
         <ScrollAnimationWrapper animation="slide-up">
           <AboutSection />
         </ScrollAnimationWrapper>
-        <PortfolioSection />
+        <PortfolioSection items={portfolioItems} />
         <ScrollAnimationWrapper animation="slide-up">
-          <ExperienceSection />
+          <ExperienceSection experiences={experiences} />
         </ScrollAnimationWrapper>
         <ScrollAnimationWrapper>
           <ContactSection />

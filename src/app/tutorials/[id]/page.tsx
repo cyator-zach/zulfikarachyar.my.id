@@ -1,5 +1,5 @@
 
-import { tutorialItems } from '@/lib/placeholder-data';
+import { getTutorials, getTutorialById } from '@/lib/data-service';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Header } from '@/components/header';
@@ -20,7 +20,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tutorial = tutorialItems.find(item => item.id === params.id);
+  const tutorial = await getTutorialById(params.id);
 
   if (!tutorial) {
     return {
@@ -34,8 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function MoreTutorialsSection({ currentTutorialId }: { currentTutorialId: string }) {
-  const recentTutorials = tutorialItems
+async function MoreTutorialsSection({ currentTutorialId }: { currentTutorialId: string }) {
+  const allTutorials = await getTutorials();
+  const recentTutorials = allTutorials
     .filter(item => item.id !== currentTutorialId)
     .slice(0, 3);
 
@@ -78,8 +79,8 @@ function MoreTutorialsSection({ currentTutorialId }: { currentTutorialId: string
 }
 
 
-export default function TutorialDetailPage({ params }: { params: { id: string } }) {
-  const tutorial = tutorialItems.find(item => item.id === params.id);
+export default async function TutorialDetailPage({ params }: { params: { id: string } }) {
+  const tutorial = await getTutorialById(params.id);
 
   if (!tutorial) {
     notFound();
@@ -102,27 +103,27 @@ export default function TutorialDetailPage({ params }: { params: { id: string } 
               <div className="flex items-center space-x-4 text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={tutorial.authorImageUrl} alt={tutorial.author} />
-                    <AvatarFallback>{tutorial.author.substring(0, 2)}</AvatarFallback>
+                    <AvatarImage src={tutorial.author?.image_url} alt={tutorial.author?.name} />
+                    <AvatarFallback>{tutorial.author?.name.substring(0, 2)}</AvatarFallback>
                   </Avatar>
-                  <span className="font-medium text-foreground">{tutorial.author}</span>
+                  <span className="font-medium text-foreground">{tutorial.author?.name}</span>
                 </div>
                 <span className="hidden md:block">|</span>
                 <div className="flex items-center space-x-2">
                   <CalendarDays className="h-5 w-5" />
-                  <span>{format(new Date(tutorial.date), 'MMMM dd, yyyy')}</span>
+                  <span>{format(new Date(tutorial.created_at), 'MMMM dd, yyyy')}</span>
                 </div>
               </div>
             </div>
 
             <div className="relative aspect-video w-full rounded-lg overflow-hidden mb-8 shadow-lg">
               <Image
-                src={tutorial.imageUrl}
+                src={tutorial.image_url}
                 alt={tutorial.title}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 1024px"
-                data-ai-hint={tutorial.imageHint}
+                data-ai-hint={tutorial.image_hint}
                 priority
               />
             </div>
@@ -148,7 +149,8 @@ export default function TutorialDetailPage({ params }: { params: { id: string } 
 }
 
 export async function generateStaticParams() {
-  return tutorialItems.map((item) => ({
+  const tutorials = await getTutorials();
+  return tutorials.map((item) => ({
     id: item.id,
   }));
 }

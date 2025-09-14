@@ -1,10 +1,15 @@
+
 import { Section } from '@/components/section';
-import { experiences } from '@/lib/placeholder-data';
+import type { Experience } from '@/lib/data-service';
 import { Briefcase } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-export function ExperienceSection() {
+interface ExperienceSectionProps {
+  experiences: Experience[];
+}
+
+export function ExperienceSection({ experiences }: ExperienceSectionProps) {
   return (
     <Section id="experience" className="relative overflow-hidden">
       <div className="absolute inset-0 w-full h-full bg-animated-blur -z-10"></div>

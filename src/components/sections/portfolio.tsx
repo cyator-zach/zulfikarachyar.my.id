@@ -1,11 +1,11 @@
+
 "use client";
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { Section } from '@/components/section';
 import { Card, CardContent, CardHeader, CardDescription, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { portfolioItems } from '@/lib/placeholder-data';
+import type { PortfolioItem as PortfolioItemType } from '@/lib/data-service';
 import { ArrowRight } from 'lucide-react';
 import {
   Carousel,
@@ -18,7 +18,11 @@ import {
 import { ScrollAnimationWrapper } from '../scroll-animation';
 import React from 'react';
 
-export function PortfolioSection() {
+interface PortfolioSectionProps {
+  items: PortfolioItemType[];
+}
+
+export function PortfolioSection({ items }: PortfolioSectionProps) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -64,7 +68,7 @@ export function PortfolioSection() {
             className="w-full"
           >
             <CarouselContent>
-              {portfolioItems.map((item) => (
+              {items.map((item) => (
                 <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
                       <Link href={`/portfolio/${item.id}`} className="block h-full group">
@@ -72,12 +76,12 @@ export function PortfolioSection() {
                           <CardHeader className="p-0">
                             <div className="aspect-video relative overflow-hidden">
                               <Image
-                                src={item.imageUrl}
+                                src={item.image_url}
                                 alt={item.title}
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                data-ai-hint={item.imageHint}
+                                data-ai-hint={item.image_hint}
                               />
                             </div>
                           </CardHeader>

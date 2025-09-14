@@ -1,4 +1,5 @@
-import { portfolioItems } from '@/lib/placeholder-data';
+
+import { getPortfolioItems, getPortfolioItemById } from '@/lib/data-service';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Header } from '@/components/header';
@@ -16,7 +17,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = portfolioItems.find(item => item.id === params.id);
+  const project = await getPortfolioItemById(params.id);
 
   if (!project) {
     return {
@@ -30,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function PortfolioDetailPage({ params }: { params: { id:string } }) {
-  const project = portfolioItems.find(item => item.id === params.id);
+export default async function PortfolioDetailPage({ params }: { params: { id:string } }) {
+  const project = await getPortfolioItemById(params.id);
 
   if (!project) {
     notFound();
@@ -55,27 +56,27 @@ export default function PortfolioDetailPage({ params }: { params: { id:string } 
                     <div className="flex items-center space-x-4 text-muted-foreground">
                         <div className="flex items-center space-x-2">
                         <Avatar className="h-8 w-8">
-                            <AvatarImage src={project.authorImageUrl} alt={project.author} />
-                            <AvatarFallback>{project.author.substring(0, 2)}</AvatarFallback>
+                            <AvatarImage src={project.author?.image_url} alt={project.author?.name} />
+                            <AvatarFallback>{project.author?.name.substring(0, 2)}</AvatarFallback>
                         </Avatar>
-                        <span className="font-medium text-foreground">{project.author}</span>
+                        <span className="font-medium text-foreground">{project.author?.name}</span>
                         </div>
                         <span className="hidden md:block">|</span>
                         <div className="flex items-center space-x-2">
                         <CalendarDays className="h-5 w-5" />
-                        <span>{format(new Date(project.date), 'MMMM dd, yyyy')}</span>
+                        <span>{format(new Date(project.created_at), 'MMMM dd, yyyy')}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="relative aspect-video w-full rounded-lg overflow-hidden mb-8 shadow-lg">
                     <Image
-                        src={project.imageUrl}
+                        src={project.image_url}
                         alt={project.title}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 1024px"
-                        data-ai-hint={project.imageHint}
+                        data-ai-hint={project.image_hint}
                         priority
                     />
                 </div>
@@ -109,12 +110,12 @@ export default function PortfolioDetailPage({ params }: { params: { id:string } 
                                 </div>
                                 <div className="space-y-3 pt-4">
                                      <Button asChild className="w-full">
-                                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                        <a href={project.live_url} target="_blank" rel="noopener noreferrer">
                                             <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
                                         </a>
                                     </Button>
                                     <Button variant="outline" asChild className="w-full">
-                                        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                                        <a href={project.repo_url} target="_blank" rel="noopener noreferrer">
                                             <Github className="mr-2 h-4 w-4" /> View Code
                                         </a>
                                     </Button>
@@ -142,6 +143,7 @@ export default function PortfolioDetailPage({ params }: { params: { id:string } 
 
 // This function tells Next.js which pages to pre-render at build time.
 export async function generateStaticParams() {
+  const portfolioItems = await getPortfolioItems();
   return portfolioItems.map((item) => ({
     id: item.id,
   }));

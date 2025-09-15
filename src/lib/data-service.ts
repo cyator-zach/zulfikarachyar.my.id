@@ -2,7 +2,6 @@
 // @ts-nocheck
 import postgres from 'postgres';
 import type { LucideIcon } from 'lucide-react';
-import { Linkedin, Github, Instagram } from 'lucide-react';
 
 // Tipe data yang akan kita gunakan di aplikasi
 export interface PortfolioItem {

@@ -49,7 +49,19 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
   const { data, error } = await supabase
     .from('portfolio_items')
     .select(`
-      *,
+      id,
+      title,
+      description,
+      image_url,
+      image_hint,
+      tags,
+      live_url,
+      repo_url,
+      challenge,
+      solution,
+      results,
+      author_id,
+      created_at,
       author:profiles ( name, image_url )
     `)
     .order('created_at', { ascending: false });
@@ -59,12 +71,8 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return [];
   }
   
-  // Supabase mengembalikan relasi sebagai objek tunggal, bukan array
-  // Kita perlu menyesuaikannya agar cocok dengan tipe data kita
-  return data.map(item => ({
-    ...item,
-    author: Array.isArray(item.author) ? item.author[0] : item.author
-  })) as unknown as PortfolioItem[];
+  // Data (jika ada) sudah dalam format yang benar karena select eksplisit
+  return (data || []) as PortfolioItem[];
 }
 
 export async function getPortfolioItemById(id: string): Promise<PortfolioItem | null> {
@@ -78,11 +86,11 @@ export async function getPortfolioItemById(id: string): Promise<PortfolioItem | 
     .single();
 
   if (error) {
-    console.error(`Error fetching portfolio item with id ${id}:`, error);
+    console.error(`Error fetching portfolio item with id ${id}:`, error.message);
     return null;
   }
   
-  return data as unknown as PortfolioItem;
+  return data as PortfolioItem | null;
 }
 
 export async function getExperiences(): Promise<Experience[]> {
@@ -95,7 +103,7 @@ export async function getExperiences(): Promise<Experience[]> {
     console.error('Error fetching experiences:', error);
     return [];
   }
-  return data;
+  return data || [];
 }
 
 export async function getTutorials(): Promise<Tutorial[]> {
@@ -111,10 +119,7 @@ export async function getTutorials(): Promise<Tutorial[]> {
     console.error('Error fetching tutorials:', error);
     return [];
   }
-    return data.map(item => ({
-    ...item,
-    author: Array.isArray(item.author) ? item.author[0] : item.author
-  })) as unknown as Tutorial[];
+  return (data || []) as Tutorial[];
 }
 
 export async function getTutorialById(id: string): Promise<Tutorial | null> {
@@ -131,7 +136,7 @@ export async function getTutorialById(id: string): Promise<Tutorial | null> {
     console.error(`Error fetching tutorial with id ${id}:`, error);
     return null;
   }
-  return data as unknown as Tutorial;
+  return data as Tutorial | null;
 }
 
 

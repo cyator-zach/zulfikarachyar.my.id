@@ -142,7 +142,6 @@ export const navLinks = [
   { href: '#portfolio', label: 'Work' },
   { href: '#experience', label: 'Experience' },
   { href: '/tutorials', label: 'Tutorial' },
-  { href: '/sitemap', label: 'Sitemap'}
 ];
 
 export const contactLinks = [

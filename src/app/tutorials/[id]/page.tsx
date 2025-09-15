@@ -139,9 +139,6 @@ export default async function TutorialDetailPage({ params }: { params: { id: str
       <footer className="py-8 bg-slate-900">
         <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
           <p className="mb-2">&copy; 2024 Zulfikar Achyar. All rights reserved.</p>
-          <Link href="/sitemap" className="hover:underline text-sm text-slate-400">
-            Sitemap
-          </Link>
         </div>
       </footer>
     </div>

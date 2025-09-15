@@ -7,60 +7,67 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-model PortfolioItem {
-  id          String   @id @default(uuid()) @map("id")
-  title       String
-  description String
-  image_url   String
-  image_hint  String
-  tags        String[]
-  live_url    String
-  repo_url    String
-  challenge   String
-  solution    String
-  results     String
-  author_id   String
-  created_at  DateTime @default(now())
-  author      Profile  @relation(fields: [author_id], references: [id])
-
-  @@map("portfolio_items")
-}
-
-model Experience {
-  id            String  @id @default(uuid()) @map("id")
-  company       String
-  position      String
-  duration      String
-  description   String
-  display_order Int
-
-  @@map("experiences")
-}
-
-model Tutorial {
-  id          String   @id @default(uuid()) @map("id")
-  title       String
-  description String
-  image_url   String
-  image_hint  String
-  author_id   String
-  created_at  DateTime @default(now())
-  category    String
-  content     String
-  author      Profile  @relation(fields: [author_id], references: [id])
-
-  @@map("tutorials")
+  // url      = env("DATABASE_URL") // Directly using the transaction pooler URL
+  url      = "postgresql://postgres.blrmrbpnzmvhueewrhdi:K7ZQF3zUEr9rgg96@aws-1-us-east-2.pooler.supabase.com:6543/postgres"
 }
 
 model Profile {
-  id            String          @id @default(uuid()) @map("id")
-  name          String
-  image_url     String
-  portfolioItems PortfolioItem[]
-  tutorials     Tutorial[]
+  id        String   @id @default(cuid())
+  name      String
+  image_url String?
+  email     String   @unique
+  bio       String?
+  portfolio_items PortfolioItem[]
+  tutorials Tutorial[]
 
-  @@map("profiles")
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model PortfolioItem {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image_url   String
+  image_hint  String?
+  tags        String[]
+  live_url    String?
+  repo_url    String?
+  challenge   String?
+  solution    String?
+  results     String?
+  
+  authorId    String
+  author      Profile @relation(fields: [authorId], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Experience {
+  id            String   @id @default(cuid())
+  position      String
+  company       String
+  duration      String
+  description   String
+  display_order Int      @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Tutorial {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  content     String
+  image_url   String
+  image_hint  String?
+  category    String
+
+  authorId    String
+  author      Profile @relation(fields: [authorId], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

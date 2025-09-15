@@ -3,6 +3,7 @@
 import { createClient } from '@supabase/supabase-js';
 import type { LucideIcon } from 'lucide-react';
 
+// Initialize Supabase client using environment variables
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 

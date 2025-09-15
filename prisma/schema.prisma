@@ -7,23 +7,27 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres.sttycqpnguiglnieivdw:K7ZQF3zUEr9rgg96@aws-1-us-east-2.pooler.supabase.com:6543/postgres?sslmode=require&pgbouncer=true"
+  url      = env("DATABASE_URL")
 }
 
 model Profile {
-  id              String            @id @default(uuid())
+  id              String          @id @default(uuid())
+  created_at      DateTime        @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime        @updatedAt @db.Timestamptz(6)
   name            String
-  email           String            @unique
   bio             String
+  email           String          @unique
   image_url       String
-  created_at      DateTime          @default(now()) @db.Timestamptz(6)
-  updated_at      DateTime          @updatedAt @db.Timestamptz(6)
   portfolio_items PortfolioItem[]
   tutorials       Tutorial[]
+
+  @@map("profiles")
 }
 
 model PortfolioItem {
-  id          String    @id @default(uuid())
+  id          String   @id @default(uuid())
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime @updatedAt @db.Timestamptz(6)
   title       String
   description String
   image_url   String
@@ -34,39 +38,37 @@ model PortfolioItem {
   tags        String[]
   live_url    String?
   repo_url    String?
+  author      Profile? @relation(fields: [author_id], references: [id])
   author_id   String?
-  created_at  DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at  DateTime  @updatedAt @db.Timestamptz(6)
-  author      Profile?  @relation(fields: [author_id], references: [id])
 
   @@map("portfolio_items")
 }
 
 model Experience {
   id            String   @id @default(uuid())
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime @updatedAt @db.Timestamptz(6)
   position      String
   company       String
   duration      String
   description   String
   display_order Int
-  created_at    DateTime @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime @updatedAt @db.Timestamptz(6)
 
   @@map("experiences")
 }
 
 model Tutorial {
   id          String   @id @default(uuid())
-  title       String
-  description String
-  content     String
-  category    String
-  image_url   String
-  image_hint  String
-  author_id   String?
   created_at  DateTime @default(now()) @db.Timestamptz(6)
   updated_at  DateTime @updatedAt @db.Timestamptz(6)
+  title       String
+  description String
+  image_url   String
+  image_hint  String
+  category    String
+  content     String
   author      Profile? @relation(fields: [author_id], references: [id])
+  author_id   String?
 
   @@map("tutorials")
 }

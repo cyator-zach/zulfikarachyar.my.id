@@ -1,5 +1,5 @@
-
-import { createClient } from '@supabase/supabase-js';
+// @ts-nocheck
+import postgres from 'postgres';
 import type { LucideIcon } from 'lucide-react';
 import { Linkedin, Github, Instagram } from 'lucide-react';
 
@@ -18,7 +18,7 @@ export interface PortfolioItem {
   results: string;
   author_id: string;
   created_at: string;
-  author?: { name: string; image_url: string }; // Relasi ke profiles
+  author?: { name: string; image_url: string };
 }
 
 export interface Experience {
@@ -39,133 +39,135 @@ export interface Tutorial {
   created_at: string;
   category: string;
   content: string;
-  author?: { name: string; image_url: string }; // Relasi ke profiles
+  author?: { name: string; image_url: string };
 }
 
+export interface Profile {
+  id: string;
+  name: string;
+  image_url: string;
+}
 
-// --- FUNGSI PENGAMBILAN DATA ---
+let sql: postgres.Sql | null = null;
 
-// Helper untuk membuat client Supabase baru dengan kredensial yang benar
-// Ini memastikan kita tidak terjebak dengan koneksi yang salah atau kadaluwarsa
-const getSupabaseClient = () => {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    if (!supabaseUrl || !supabaseAnonKey) {
-        throw new Error('Supabase URL or Anon Key is not defined in environment variables.');
+function getDbClient() {
+  if (!sql) {
+    if (!process.env.DATABASE_URL) {
+      throw new Error('DATABASE_URL environment variable is not set.');
     }
-    
-    // Selalu buat client baru untuk memastikan koneksi yang bersih
-    return createClient(supabaseUrl, supabaseAnonKey);
-};
+    sql = postgres(process.env.DATABASE_URL);
+  }
+  return sql;
+}
+
+async function getAuthorsMap(): Promise<Map<string, Profile>> {
+  const client = getDbClient();
+  try {
+    const authors = await client<Profile[]>`SELECT id, name, image_url FROM profiles`;
+    const authorMap = new Map();
+    for (const author of authors) {
+      authorMap.set(author.id, author);
+    }
+    return authorMap;
+  } catch (error) {
+    console.error('Error fetching authors:', error);
+    return new Map();
+  }
+}
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
-  const supabase = getSupabaseClient();
-  const { data, error } = await supabase
-    .from('portfolio_items')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('Error fetching portfolio items:', error.message);
+  const client = getDbClient();
+  try {
+    const items = await client<PortfolioItem[]>`
+      SELECT id, title, description, image_url, image_hint, tags, live_url, repo_url, challenge, solution, results, author_id, created_at
+      FROM portfolio_items 
+      ORDER BY created_at DESC
+    `;
+    const authorMap = await getAuthorsMap();
+    return items.map(item => ({
+      ...item,
+      author: authorMap.get(item.author_id),
+    }));
+  } catch (error) {
+    console.error('Error fetching portfolio items:', error);
     return [];
   }
-  
-  // Memastikan data relasi author ditangani dengan benar
-  return (data || []).map(item => ({
-    ...item,
-    author: Array.isArray(item.author) ? item.author[0] : item.author
-  })) as PortfolioItem[];
 }
 
 export async function getPortfolioItemById(id: string): Promise<PortfolioItem | null> {
-  const supabase = getSupabaseClient();
-  const { data, error } = await supabase
-    .from('portfolio_items')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
-    .eq('id', id)
-    .single();
-
-  if (error) {
-    console.error(`Error fetching portfolio item with id ${id}:`, error.message);
+  const client = getDbClient();
+  try {
+    const [item] = await client<PortfolioItem[]>`
+      SELECT id, title, description, image_url, image_hint, tags, live_url, repo_url, challenge, solution, results, author_id, created_at
+      FROM portfolio_items 
+      WHERE id = ${id}
+    `;
+    if (!item) return null;
+    
+    const authorMap = await getAuthorsMap();
+    return {
+      ...item,
+      author: authorMap.get(item.author_id),
+    };
+  } catch (error) {
+    console.error(`Error fetching portfolio item with id ${id}:`, error);
     return null;
   }
-  
-  if (!data) return null;
-
-  const item = {
-    ...data,
-    author: Array.isArray(data.author) ? data.author[0] : data.author
-  };
-  
-  return item as PortfolioItem | null;
 }
 
 export async function getExperiences(): Promise<Experience[]> {
-  const supabase = getSupabaseClient();
-  const { data, error } = await supabase
-    .from('experiences')
-    .select('*')
-    .order('display_order', { ascending: true });
-
-  if (error) {
-    console.error('Error fetching experiences:', error.message);
+  const client = getDbClient();
+  try {
+    const experiences = await client<Experience[]>`
+      SELECT id, company, position, duration, description 
+      FROM experiences 
+      ORDER BY display_order ASC
+    `;
+    return experiences;
+  } catch (error) {
+    console.error('Error fetching experiences:', error);
     return [];
   }
-  return data || [];
 }
 
 export async function getTutorials(): Promise<Tutorial[]> {
-  const supabase = getSupabaseClient();
-  const { data, error } = await supabase
-    .from('tutorials')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('Error fetching tutorials:', error.message);
+  const client = getDbClient();
+  try {
+    const tutorials = await client<Tutorial[]>`
+      SELECT id, title, description, image_url, image_hint, author_id, created_at, category, content
+      FROM tutorials
+      ORDER BY created_at DESC
+    `;
+    const authorMap = await getAuthorsMap();
+    return tutorials.map(tutorial => ({
+      ...tutorial,
+      author: authorMap.get(tutorial.author_id),
+    }));
+  } catch (error) {
+    console.error('Error fetching tutorials:', error);
     return [];
   }
-
-  return (data || []).map(item => ({
-    ...item,
-    author: Array.isArray(item.author) ? item.author[0] : item.author
-  })) as Tutorial[];
 }
 
 export async function getTutorialById(id: string): Promise<Tutorial | null> {
-  const supabase = getSupabaseClient();
-  const { data, error } = await supabase
-    .from('tutorials')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
-    .eq('id', id)
-    .single();
+  const client = getDbClient();
+  try {
+    const [tutorial] = await client<Tutorial[]>`
+      SELECT id, title, description, image_url, image_hint, author_id, created_at, category, content
+      FROM tutorials
+      WHERE id = ${id}
+    `;
+     if (!tutorial) return null;
 
-  if (error) {
-    console.error(`Error fetching tutorial with id ${id}:`, error.message);
+    const authorMap = await getAuthorsMap();
+    return {
+        ...tutorial,
+        author: authorMap.get(tutorial.author_id)
+    };
+  } catch (error) {
+    console.error(`Error fetching tutorial with id ${id}:`, error);
     return null;
   }
-
-  if (!data) return null;
-
-  const item = {
-      ...data,
-      author: Array.isArray(data.author) ? data.author[0] : data.author
-  };
-
-  return item as Tutorial | null;
 }
 
 

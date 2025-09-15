@@ -71,7 +71,6 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return [];
   }
   
-  // Data (jika ada) sudah dalam format yang benar karena select eksplisit
   return (data || []) as PortfolioItem[];
 }
 

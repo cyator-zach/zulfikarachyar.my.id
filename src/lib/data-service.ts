@@ -1,5 +1,6 @@
 'use server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase/server';
+import { cookies } from 'next/headers';
 
 // Tipe data yang akan kita gunakan di aplikasi
 export interface PortfolioItem {
@@ -47,13 +48,8 @@ export interface Profile {
   image_url: string;
 }
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-const client = createClient(supabaseUrl, supabaseKey);
-
-async function getAuthorsMap(): Promise<Map<string, Profile>> {
-  const { data: authors, error } = await client.from('profiles').select('id, name, image_url');
+async function getAuthorsMap(supabase: ReturnType<typeof createClient>): Promise<Map<string, Profile>> {
+  const { data: authors, error } = await supabase.from('profiles').select('id, name, image_url');
 
   if (error) {
     console.error('Error fetching authors:', error);
@@ -68,7 +64,9 @@ async function getAuthorsMap(): Promise<Map<string, Profile>> {
 }
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
-  const { data: items, error } = await client
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data: items, error } = await supabase
     .from('portfolio_items')
     .select('id, title, description, image_url, image_hint, tags, live_url, repo_url, challenge, solution, results, author_id, created_at')
     .order('created_at', { ascending: false });
@@ -78,7 +76,7 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return [];
   }
 
-  const authorMap = await getAuthorsMap();
+  const authorMap = await getAuthorsMap(supabase);
   return items.map(item => ({
     ...item,
     author: authorMap.get(item.author_id),
@@ -86,7 +84,9 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
 }
 
 export async function getPortfolioItemById(id: string): Promise<PortfolioItem | null> {
-  const { data: item, error } = await client
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data: item, error } = await supabase
     .from('portfolio_items')
     .select('id, title, description, image_url, image_hint, tags, live_url, repo_url, challenge, solution, results, author_id, created_at')
     .eq('id', id)
@@ -98,7 +98,7 @@ export async function getPortfolioItemById(id: string): Promise<PortfolioItem | 
   }
   if (!item) return null;
 
-  const authorMap = await getAuthorsMap();
+  const authorMap = await getAuthorsMap(supabase);
   return {
     ...item,
     author: authorMap.get(item.author_id),
@@ -106,7 +106,9 @@ export async function getPortfolioItemById(id: string): Promise<PortfolioItem | 
 }
 
 export async function getExperiences(): Promise<Experience[]> {
-  const { data: experiences, error } = await client
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data: experiences, error } = await supabase
     .from('experiences')
     .select('id, company, position, duration, description')
     .order('display_order', { ascending: true });
@@ -119,7 +121,9 @@ export async function getExperiences(): Promise<Experience[]> {
 }
 
 export async function getTutorials(): Promise<Tutorial[]> {
-  const { data: tutorials, error } = await client
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data: tutorials, error } = await supabase
     .from('tutorials')
     .select('id, title, description, image_url, image_hint, author_id, created_at, category, content')
     .order('created_at', { ascending: false });
@@ -129,7 +133,7 @@ export async function getTutorials(): Promise<Tutorial[]> {
     return [];
   }
 
-  const authorMap = await getAuthorsMap();
+  const authorMap = await getAuthorsMap(supabase);
   return tutorials.map(tutorial => ({
     ...tutorial,
     author: authorMap.get(tutorial.author_id),
@@ -137,7 +141,9 @@ export async function getTutorials(): Promise<Tutorial[]> {
 }
 
 export async function getTutorialById(id: string): Promise<Tutorial | null> {
-  const { data: tutorial, error } = await client
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data: tutorial, error } = await supabase
     .from('tutorials')
     .select('id, title, description, image_url, image_hint, author_id, created_at, category, content')
     .eq('id', id)
@@ -149,7 +155,7 @@ export async function getTutorialById(id: string): Promise<Tutorial | null> {
   }
   if (!tutorial) return null;
 
-  const authorMap = await getAuthorsMap();
+  const authorMap = await getAuthorsMap(supabase);
   return {
     ...tutorial,
     author: authorMap.get(tutorial.author_id),

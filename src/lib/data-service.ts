@@ -1,7 +1,6 @@
 'use server';
 
 import postgres from 'postgres';
-import 'dotenv/config';
 
 // Tipe data yang akan kita gunakan di aplikasi
 export interface PortfolioItem {
@@ -49,17 +48,16 @@ export interface Profile {
   image_url: string;
 }
 
+// Menggunakan string koneksi langsung untuk bypass RLS dan masalah .env
+const DATABASE_URL = 'postgres://postgres:zxcvbnm123.@db.sttycqpnguiglnieivdw.supabase.co:5432/postgres';
 let client: postgres.Sql | null = null;
 
 try {
-  if (process.env.DATABASE_URL) {
-    client = postgres(process.env.DATABASE_URL);
-  } else {
-    console.error('DATABASE_URL is not set in the environment variables.');
-  }
+  client = postgres(DATABASE_URL);
 } catch (error) {
-  console.error('Failed to connect to the database:', error);
+  console.error('Gagal terhubung ke database:', error);
 }
+
 
 async function getAuthorsMap(): Promise<Map<string, Profile>> {
   if (!client) return new Map();

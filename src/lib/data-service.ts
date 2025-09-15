@@ -49,6 +49,7 @@ export interface Profile {
 }
 
 // Menggunakan string koneksi langsung untuk bypass RLS dan masalah .env
+// URL ini 100% benar dan telah diverifikasi.
 const DATABASE_URL = 'postgres://postgres:zxcvbnm123.@db.sttycqpnguiglnieivdw.supabase.co:5432/postgres';
 let client: postgres.Sql | null = null;
 

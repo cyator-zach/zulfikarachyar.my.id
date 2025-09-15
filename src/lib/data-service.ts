@@ -28,6 +28,7 @@ export interface Experience {
   position: string;
   duration: string;
   description: string;
+  display_order: number;
 }
 
 export interface Tutorial {
@@ -50,15 +51,16 @@ export interface Profile {
 }
 
 let sql: postgres.Sql | null = null;
+const DATABASE_URL = 'postgresql://postgres:K7ZQF3zUEr9rgg96@db.sttycqpnguiglnieivdw.supabase.co:5432/postgres';
+
 
 function getDbClient() {
+  if (!DATABASE_URL) {
+    console.error('DATABASE_URL environment variable is not set.');
+    return null;
+  }
   if (!sql) {
-    if (!process.env.DATABASE_URL) {
-      // This will be caught by the functions and return empty arrays
-      console.error('DATABASE_URL environment variable is not set.');
-      return null;
-    }
-    sql = postgres(process.env.DATABASE_URL);
+    sql = postgres(DATABASE_URL);
   }
   return sql;
 }

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Section } from '@/components/section';
 import { Card, CardContent, CardHeader, CardDescription, CardTitle } from '@/components/ui/card';
-import type { PortfolioItem as PortfolioItemType } from '@/lib/data-service';
+import type { PortfolioItemWithAuthor as PortfolioItemType } from '@/lib/data-service';
 import { ArrowRight } from 'lucide-react';
 import {
   Carousel,

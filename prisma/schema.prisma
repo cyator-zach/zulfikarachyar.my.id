@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PortfolioItem {
+  id          String   @id @default(uuid()) @map("id")
+  title       String
+  description String
+  image_url   String
+  image_hint  String
+  tags        String[]
+  live_url    String
+  repo_url    String
+  challenge   String
+  solution    String
+  results     String
+  author_id   String
+  created_at  DateTime @default(now())
+  author      Profile  @relation(fields: [author_id], references: [id])
+
+  @@map("portfolio_items")
+}
+
+model Experience {
+  id            String  @id @default(uuid()) @map("id")
+  company       String
+  position      String
+  duration      String
+  description   String
+  display_order Int
+
+  @@map("experiences")
+}
+
+model Tutorial {
+  id          String   @id @default(uuid()) @map("id")
+  title       String
+  description String
+  image_url   String
+  image_hint  String
+  author_id   String
+  created_at  DateTime @default(now())
+  category    String
+  content     String
+  author      Profile  @relation(fields: [author_id], references: [id])
+
+  @@map("tutorials")
+}
+
+model Profile {
+  id            String          @id @default(uuid()) @map("id")
+  name          String
+  image_url     String
+  portfolioItems PortfolioItem[]
+  tutorials     Tutorial[]
+
+  @@map("profiles")
+}

@@ -12,7 +12,7 @@ import { ScrollAnimationWrapper } from "@/components/scroll-animation";
 import { ContactSection } from "@/components/sections/contact";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import type { Tutorial } from "@/lib/data-service";
+import type { TutorialWithAuthor as Tutorial } from "@/lib/data-service";
 import { getTutorials } from "@/lib/data-service";
 import { Skeleton } from "@/components/ui/skeleton";
 

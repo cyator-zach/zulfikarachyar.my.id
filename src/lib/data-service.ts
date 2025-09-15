@@ -48,22 +48,7 @@ export interface Tutorial {
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
   const { data, error } = await supabase
     .from('portfolio_items')
-    .select(`
-      id,
-      title,
-      description,
-      image_url,
-      image_hint,
-      tags,
-      live_url,
-      repo_url,
-      challenge,
-      solution,
-      results,
-      author_id,
-      created_at,
-      author:profiles ( name, image_url )
-    `)
+    .select('*') // Mengambil semua kolom dari tabel portfolio_items
     .order('created_at', { ascending: false });
 
   if (error) {
@@ -71,16 +56,15 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     return [];
   }
   
-  return (data || []) as PortfolioItem[];
+  // Untuk sementara, kita set author secara manual agar tidak error di UI
+  // Ini bisa disempurnakan nanti
+  return (data || []).map(item => ({...item, author: {name: "Zulfikar Achyar", image_url: "https://picsum.photos/seed/4/400/400"}})) as PortfolioItem[];
 }
 
 export async function getPortfolioItemById(id: string): Promise<PortfolioItem | null> {
   const { data, error } = await supabase
     .from('portfolio_items')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
+    .select('*')
     .eq('id', id)
     .single();
 
@@ -89,7 +73,12 @@ export async function getPortfolioItemById(id: string): Promise<PortfolioItem | 
     return null;
   }
   
-  return data as PortfolioItem | null;
+  if (!data) return null;
+
+  // Sama seperti di atas, set author secara manual
+  const item = {...data, author: {name: "Zulfikar Achyar", image_url: "https://picsum.photos/seed/4/400/400"}};
+  
+  return item as PortfolioItem | null;
 }
 
 export async function getExperiences(): Promise<Experience[]> {
@@ -108,26 +97,22 @@ export async function getExperiences(): Promise<Experience[]> {
 export async function getTutorials(): Promise<Tutorial[]> {
   const { data, error } = await supabase
     .from('tutorials')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
+    .select('*')
     .order('created_at', { ascending: false });
 
   if (error) {
     console.error('Error fetching tutorials:', error);
     return [];
   }
-  return (data || []) as Tutorial[];
+
+  // Sama seperti di atas, set author secara manual
+  return (data || []).map(item => ({...item, author: {name: "Zulfikar Achyar", image_url: "https://picsum.photos/seed/4/400/400"}})) as Tutorial[];
 }
 
 export async function getTutorialById(id: string): Promise<Tutorial | null> {
   const { data, error } = await supabase
     .from('tutorials')
-    .select(`
-      *,
-      author:profiles ( name, image_url )
-    `)
+    .select('*')
     .eq('id', id)
     .single();
 
@@ -135,7 +120,13 @@ export async function getTutorialById(id: string): Promise<Tutorial | null> {
     console.error(`Error fetching tutorial with id ${id}:`, error);
     return null;
   }
-  return data as Tutorial | null;
+
+  if (!data) return null;
+
+  // Sama seperti di atas, set author secara manual
+  const item = {...data, author: {name: "Zulfikar Achyar", image_url: "https://picsum.photos/seed/4/400/400"}};
+
+  return item as Tutorial | null;
 }
 
 

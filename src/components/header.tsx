@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { navLinks } from '@/lib/data-service';
+import { navLinks } from '@/lib/static-data';
 import { Button } from '@/components/ui/button';
 import { Code, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';

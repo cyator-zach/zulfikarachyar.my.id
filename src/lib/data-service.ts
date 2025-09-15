@@ -1,3 +1,4 @@
+'use server';
 // @ts-nocheck
 import postgres from 'postgres';
 import type { LucideIcon } from 'lucide-react';
@@ -53,15 +54,19 @@ let sql: postgres.Sql | null = null;
 function getDbClient() {
   if (!sql) {
     if (!process.env.DATABASE_URL) {
-      throw new Error('DATABASE_URL environment variable is not set.');
+      // This will be caught by the functions and return empty arrays
+      console.error('DATABASE_URL environment variable is not set.');
+      return null;
     }
     sql = postgres(process.env.DATABASE_URL);
   }
   return sql;
 }
 
+
 async function getAuthorsMap(): Promise<Map<string, Profile>> {
   const client = getDbClient();
+  if (!client) return new Map();
   try {
     const authors = await client<Profile[]>`SELECT id, name, image_url FROM profiles`;
     const authorMap = new Map();
@@ -77,6 +82,7 @@ async function getAuthorsMap(): Promise<Map<string, Profile>> {
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
   const client = getDbClient();
+  if (!client) return [];
   try {
     const items = await client<PortfolioItem[]>`
       SELECT id, title, description, image_url, image_hint, tags, live_url, repo_url, challenge, solution, results, author_id, created_at
@@ -96,6 +102,7 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
 
 export async function getPortfolioItemById(id: string): Promise<PortfolioItem | null> {
   const client = getDbClient();
+  if (!client) return null;
   try {
     const [item] = await client<PortfolioItem[]>`
       SELECT id, title, description, image_url, image_hint, tags, live_url, repo_url, challenge, solution, results, author_id, created_at
@@ -117,6 +124,7 @@ export async function getPortfolioItemById(id: string): Promise<PortfolioItem | 
 
 export async function getExperiences(): Promise<Experience[]> {
   const client = getDbClient();
+  if (!client) return [];
   try {
     const experiences = await client<Experience[]>`
       SELECT id, company, position, duration, description 
@@ -132,6 +140,7 @@ export async function getExperiences(): Promise<Experience[]> {
 
 export async function getTutorials(): Promise<Tutorial[]> {
   const client = getDbClient();
+  if (!client) return [];
   try {
     const tutorials = await client<Tutorial[]>`
       SELECT id, title, description, image_url, image_hint, author_id, created_at, category, content
@@ -151,6 +160,7 @@ export async function getTutorials(): Promise<Tutorial[]> {
 
 export async function getTutorialById(id: string): Promise<Tutorial | null> {
   const client = getDbClient();
+  if (!client) return null;
   try {
     const [tutorial] = await client<Tutorial[]>`
       SELECT id, title, description, image_url, image_hint, author_id, created_at, category, content
@@ -169,33 +179,3 @@ export async function getTutorialById(id: string): Promise<Tutorial | null> {
     return null;
   }
 }
-
-
-// --- DATA STATIS (yang tidak perlu ada di DB) ---
-
-export const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#portfolio', label: 'Work' },
-  { href: '#experience', label: 'Experience' },
-  { href: '/tutorials', label: 'Tutorial' },
-];
-
-export const contactLinks = [
-  {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/zulfikar-achyar-79b15b257/',
-    icon: Linkedin,
-  },
-  {
-    name: 'GitHub',
-    url: 'https://github.com/cyator-zach',
-    icon: Github,
-  },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/zulfikar_achyar',
-    icon: Instagram,
-  },
-];
-
-export const email = 'zulfikarachyar@gmail.com';

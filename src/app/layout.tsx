@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
-import { email, contactLinks } from '@/lib/data-service';
+import { email, contactLinks } from '@/lib/static-data';
 
 export const metadata: Metadata = {
   title: 'Zulfikar Achyar | Software Engineer',

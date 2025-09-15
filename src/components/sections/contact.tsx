@@ -2,7 +2,7 @@ import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { contactLinks, email } from '@/lib/data-service';
+import { contactLinks, email } from '@/lib/static-data';
 
 export function ContactSection() {
   return (

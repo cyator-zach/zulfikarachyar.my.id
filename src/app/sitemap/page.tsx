@@ -1,6 +1,6 @@
 
 import { Header } from "@/components/header";
-import { navLinks } from "@/lib/data-service";
+import { navLinks } from "@/lib/static-data";
 import Link from "next/link";
 import { getPortfolioItems, getTutorials } from "@/lib/data-service";
 
